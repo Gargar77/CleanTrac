@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_172716) do
+ActiveRecord::Schema.define(version: 2020_09_08_191630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.string "address", null: false
+    t.string "primary_contact_name", null: false
+    t.string "primary_contact_phone", null: false
+    t.boolean "monday_cleaning", null: false
+    t.boolean "tuesday_cleaning", null: false
+    t.boolean "wednesday_cleaning", null: false
+    t.boolean "thursday_cleaning", null: false
+    t.boolean "friday_cleaning", null: false
+    t.boolean "saturday_cleaning", null: false
+    t.boolean "sunday_cleaning", null: false
+    t.time "cleaning_timeframe_start"
+    t.time "cleaning_timeframe_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_accounts_on_address"
+    t.index ["primary_contact_name"], name: "index_accounts_on_primary_contact_name"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name", null: false
