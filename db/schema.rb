@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_191630) do
+ActiveRecord::Schema.define(version: 2020_09_08_192239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2020_09_08_191630) do
     t.integer "company_id", null: false
     t.string "address", null: false
     t.string "primary_contact_name", null: false
-    t.string "primary_contact_phone", null: false
     t.boolean "monday_cleaning", null: false
     t.boolean "tuesday_cleaning", null: false
     t.boolean "wednesday_cleaning", null: false
@@ -31,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_191630) do
     t.time "cleaning_timeframe_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "primary_contact_phone", null: false
     t.index ["address"], name: "index_accounts_on_address"
     t.index ["primary_contact_name"], name: "index_accounts_on_primary_contact_name"
   end
