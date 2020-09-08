@@ -1,5 +1,9 @@
 # README
 
+  
+A janitorial management app that helps both the employer and employee have access to all their needs on a user-friendly web app.
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
