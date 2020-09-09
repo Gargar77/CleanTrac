@@ -36,6 +36,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'thor'
   gem 'foreman', '~> 0.82.0'
+  gem 'annotate'
+  gem 'bcrypt'
   
 end
 
