@@ -13,4 +13,8 @@ class Company < ApplicationRecord
     validates :name, presence:true, uniqueness:true
     validates :website, length {in: 4..60}
 
+    has_many :users,
+    class_name : "User",
+    foreign_key: :company_id,
+    primary_key: :id
 end
