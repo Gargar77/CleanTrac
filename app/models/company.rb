@@ -9,4 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Company < ApplicationRecord
+
+    validates :name, presence:true, uniqueness:true
+    validates :website, length {in: 4..60}
+
 end
