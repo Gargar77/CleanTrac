@@ -14,4 +14,9 @@
 #  last_name       :string           not null
 #
 class User < ApplicationRecord
+    attr_reader :password
+
+    validates :email, :session_token, presence:true, uniqueness:true
+    validates :password_digest, presence: { message: 'password must not be blank'}
+    validates :password, length: {minimum:8, allow_nil:true}
 end
