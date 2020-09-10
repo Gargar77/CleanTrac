@@ -18,6 +18,7 @@
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  primary_contact_phone    :integer          not null
+#  name                     :string           not null
 #
 require 'test_helper'
 
