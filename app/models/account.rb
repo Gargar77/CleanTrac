@@ -21,4 +21,13 @@
 #  name                     :string           not null
 #
 class Account < ApplicationRecord
+    validates :company_id,:name,:address,:primary_contact_name,:primary_contact_phone, presence:true
+
+
+    belongs_to :company,
+    class_name: 'Company',
+    foreign_key: :company_id,
+    primary_key: :id
+
+    has_many :cleaners,through: :active_cleaning, source: :users
 end
