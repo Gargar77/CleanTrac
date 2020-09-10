@@ -50,6 +50,7 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-matchers'
   gem 'faker'
   gem 'guard-rspec'
 end
