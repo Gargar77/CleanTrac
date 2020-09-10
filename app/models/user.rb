@@ -33,7 +33,7 @@ class User < ApplicationRecord
     primary_key: :id
 
     has_many :active_cleanings
-    has_many :accounts, through: :active_cleanings
+    has_many :accounts, through: :active_cleanings, source: :accounts
 
     def self.find_by_credentials(email,password)
         user = User.find_by(email: email)
