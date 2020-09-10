@@ -12,6 +12,7 @@
 #  updated_at      :datetime         not null
 #  first_name      :string           not null
 #  last_name       :string           not null
+#  leader_id       :integer
 #
 class User < ApplicationRecord
     attr_reader :password
@@ -25,6 +26,14 @@ class User < ApplicationRecord
     class_name: "Company",
     foreign_key: :company_id,
     primary_key: :id
+
+    belongs_to :leader,
+    class_name: "User",
+    foreign_key: :leader_id,
+    primary_key: :id
+
+    has_many :active_cleanings
+    has_many :accounts, through: :active_cleanings
 
     def self.find_by_credentials(email,password)
         user = User.find_by(email: email)
