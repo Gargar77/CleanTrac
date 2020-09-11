@@ -48,6 +48,6 @@ FactoryBot.define do
         sunday_cleaning { Faker::Boolean.boolean }
         cleaning_timeframe_start { Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :afternoon) }
         cleaning_timeframe_end { Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :evening) }
-    end    
+    end
 end
 
