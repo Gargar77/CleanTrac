@@ -9,10 +9,10 @@ FactoryBot.define do
         website { Faker::Internet.domain_name}
     end
 
-    factory :user aliases:[:leader,:owner] do
+    factory :user, aliases:[:leader,:owner] do
         first_name { Faker::Name.first_name }
         last_name { Faker::Name.last_name }
-        email { Faker::Internet.email(name: "#{first_name} #{last_name}",seperators:'.') }
+        email { Faker::Internet.email(name: "#{first_name} #{last_name}",separators:'.') }
         password { Faker::Internet.password(min_length:6) }
         session_token {nil}
         company_id {nil}
