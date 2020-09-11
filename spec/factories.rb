@@ -9,16 +9,30 @@ FactoryBot.define do
         website { Faker::Internet.domain_name}
     end
 
-    factory :user, aliases:[:leader,:owner] do
+    factory :user do
         first_name { Faker::Name.first_name }
         last_name { Faker::Name.last_name }
         email { Faker::Internet.email(name: "#{first_name} #{last_name}",separators:'.') }
-        password { Faker::Internet.password(min_length:6) }
+        password { Faker::Internet.password(min_length:8) }
         session_token {nil}
-        company_id {nil}
+        company_id {faker_company_id}
         role {nil}
         leader_id {nil}
+
+        factory :owner do
+            role {  "owner" }
+        end
+
+        factory :cleaner do
+            role { "cleaner" }
+            leader_id {fake_leader_id}
+        end
+
+        factory :supervisor do
+            role { "supervisor" }
+        end
     end
+
 
     factory :account do
         company_id {nil}
@@ -35,8 +49,10 @@ FactoryBot.define do
         sunday_cleaning { Faker::Boolean.boolean }
         cleaning_timeframe_start { Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :afternoon) }
         cleaning_timeframe_end { Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :evening) }
-    end
+    end    
+end
 
-
-    
+def faker_company_id 
+    company = FactoryBot.create(:company)
+    return company.id
 end
