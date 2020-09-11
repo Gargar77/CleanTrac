@@ -8,7 +8,7 @@
 #  link        :text             not null
 #
 class FileLink < ApplicationRecord
-validates :uploader_id, :account_id, :link presence:true
+validates :uploader_id, :account_id, :link, presence:true
 
 belongs_to :uploader,
 class_name: 'User',
