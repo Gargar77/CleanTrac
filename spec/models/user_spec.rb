@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
         describe "::find_by_credentials(email,password)" do
           before(:each) do
             cleaner.email = 'mail@gmail.com'
-            cleaner.passowrd = 'good_password'
+            cleaner.password = 'good_password'
             cleaner.session_token = "token"
             cleaner.save!
           end
