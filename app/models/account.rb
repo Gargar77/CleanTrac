@@ -29,5 +29,7 @@ class Account < ApplicationRecord
     foreign_key: :company_id,
     primary_key: :id
 
-    has_many :cleaners,through: :active_cleaning, source: :users
+    has_many :active_cleanings
+
+    has_many :cleaners,through: :active_cleanings, source: :user
 end

@@ -37,7 +37,7 @@ class User < ApplicationRecord
     
 
     has_many :active_cleanings
-    has_many :accounts, through: :active_cleanings, source: :accounts
+    has_many :accounts, through: :active_cleanings, source: :account
 
     def self.find_by_credentials(email,password)
         user = User.find_by(email: email)
