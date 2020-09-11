@@ -1,5 +1,7 @@
 
-
+#factoryBot gem will generates a model with the attributes we choose. this can be used for seeding and rspec testing.
+#Faker gem is used to create a random variation of data among our facotries.
+#the attributes that are left nill, will be filled in during the callback.
 
 FactoryBot.define do
     factory :company do
@@ -38,26 +40,3 @@ FactoryBot.define do
 
     
 end
-
-# == Schema Information
-#
-# Table name: accounts
-#
-#  id                       :bigint           not null, primary key
-#  company_id               :integer          not null
-#  address                  :string           not null
-#  primary_contact_name     :string           not null
-#  monday_cleaning          :boolean          not null
-#  tuesday_cleaning         :boolean          not null
-#  wednesday_cleaning       :boolean          not null
-#  thursday_cleaning        :boolean          not null
-#  friday_cleaning          :boolean          not null
-#  saturday_cleaning        :boolean          not null
-#  sunday_cleaning          :boolean          not null
-#  cleaning_timeframe_start :time
-#  cleaning_timeframe_end   :time
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  primary_contact_phone    :integer          not null
-#  name                     :string           not null
-#
