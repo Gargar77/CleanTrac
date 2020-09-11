@@ -13,7 +13,7 @@ class ActiveCleaning < ApplicationRecord
     has_many :users,
     class_name: "User",
     foreign_key: :user_id,
-    primary_key :id
+    primary_key: :id
 
     has_many :accounts,
     class_name: "Account",
