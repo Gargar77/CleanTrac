@@ -7,6 +7,9 @@
 #  user_id    :integer          not null
 #
 class ActiveCleaning < ApplicationRecord
+    
+    validates :account_id, :user_id, presence:true
+
     has_many :users,
     class_name: "User",
     foreign_key: :user_id,
