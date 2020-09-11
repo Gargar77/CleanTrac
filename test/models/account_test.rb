@@ -17,7 +17,7 @@
 #  cleaning_timeframe_end   :time
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
-#  primary_contact_phone    :integer          not null
+#  primary_contact_phone    :string           not null
 #  name                     :string           not null
 #
 require 'test_helper'
