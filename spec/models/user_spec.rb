@@ -45,6 +45,8 @@ RSpec.describe User, type: :model do
             expect(cleaner.leader).to_not eq(nil)
             expect(owner.leader).to be nil
         end
+
+        
         describe "ensure uniqueness" do
           it "ensures uniqueness of email" do
             cleaner.email = "mail@gmail.com"
