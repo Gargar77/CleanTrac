@@ -16,21 +16,25 @@
 #
 class User < ApplicationRecord
     attr_reader :password
-    after_initialize :ensure_session_token
-
-    validates :email, :first_name, :last_name, :session_token, presence:true, uniqueness:true
+    before_validation :ensure_session_token
+    validates :email, :first_name, :last_name, presence:true
+    validates :session_token, presence:true, uniqueness:true
     validates :password_digest, presence: { message: 'password must not be blank'}
     validates :password, length: {minimum:8, allow_nil:true}
 
-    belongs_to :company,
+    belongs_to :company, 
     class_name: "Company",
     foreign_key: :company_id,
     primary_key: :id
 
-    belongs_to :leader,
+    
+    belongs_to :leader, 
     class_name: "User",
     foreign_key: :leader_id,
-    primary_key: :id
+    primary_key: :id,
+    optional:true
+
+    
 
     has_many :active_cleanings
     has_many :accounts, through: :active_cleanings, source: :accounts
