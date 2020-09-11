@@ -40,13 +40,15 @@ RSpec.describe User, type: :model do
         it { should validate_presence_of(:password_digest)
             .with_message('password must not be blank')}
         it { should validate_length_of(:password).is_at_least(8)}
-        
+        it {should belong_to(:company)}
         it "should have a leader if the user is not an owner" do
             expect(cleaner.leader).to_not eq(nil)
             expect(owner.leader).to be nil
         end
 
         
+
+
         describe "ensure uniqueness" do
           it "ensures uniqueness of email" do
             cleaner.email = "mail@gmail.com"
