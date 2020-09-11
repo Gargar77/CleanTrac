@@ -15,7 +15,7 @@ FactoryBot.define do
         email { Faker::Internet.email(name: "#{first_name} #{last_name}",separators:'.') }
         password { Faker::Internet.password(min_length:8) }
         session_token {nil}
-        company_id {faker_company_id}
+        company_id {nil}
         role {nil}
         leader_id {nil}
 
@@ -25,11 +25,10 @@ FactoryBot.define do
 
         factory :cleaner do
             role { "cleaner" }
-            leader_id {fake_leader_id}
         end
 
-        factory :supervisor do
-            role { "supervisor" }
+        factory :leader do
+            role { "leader" }
         end
     end
 
@@ -52,7 +51,3 @@ FactoryBot.define do
     end    
 end
 
-def faker_company_id 
-    company = FactoryBot.create(:company)
-    return company.id
-end
