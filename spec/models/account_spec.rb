@@ -40,6 +40,7 @@ RSpec.describe Company, type: :model do
         it { should validate_presence_of(:primary_contact_phone) }
         #TODO: figure out how to test have_many through
         # it { should have_many(:cleaners) }
-        it { should have_one(:company) }
+        it { should belong_to(:company) }
+        it { should have_many(:cleaners)}
     end
 end
