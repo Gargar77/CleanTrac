@@ -12,6 +12,7 @@ FactoryBot.define do
     factory :user do
         first_name { Faker::Name.first_name }
         last_name { Faker::Name.last_name }
+        phone { Faker::PhoneNumber.phone_number }
         email { Faker::Internet.email(name: "#{first_name} #{last_name}",separators:'.') }
         password { Faker::Internet.password(min_length:8) }
         session_token {nil}
