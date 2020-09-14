@@ -32,7 +32,11 @@ const initialState = {
             cleanStartTime: "5:00PM",
             cleanEndTime: null
         }
-    }
+    },
+    errors: {
+        login: ["Incorrect username/password combination"]
+    },
+    session: { currentUserId: 25 }
 }
 
 const reducer = (state = initialState,action) => {
