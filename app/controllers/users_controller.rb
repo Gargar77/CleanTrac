@@ -1,15 +1,23 @@
 class UsersController < ApplicationController
-    # before_action :redirect_if_logged_in
+    before_action :authenticate_user, except: [:create]
   
-  
+    def show
+      
+    end
+
     def create
-      @user = User.new(user_params)
+      @user = User.new(user_create_params)
       if @user.save
         login!(@user)
-        render :show
+        render json: @user,status: :created
       else
-        @errors = @user.errors
-        render :error
+        render json: @user.errors, status: :unprocessable_entity
       end
     end
+
+
+
+    def user_create_params
+      params.require(:user).permit(:email, :password,:role,:first_name,:last_name,:company_id,:phone)
+  end
   end

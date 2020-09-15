@@ -15,12 +15,16 @@
 #  leader_id       :integer
 #
 class User < ApplicationRecord
-    attr_reader :password
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
+
+    has_secure_password
+    # attr_reader :password
     before_validation :ensure_session_token
-    validates :email, :first_name, :last_name, :phone, presence:true
+    validates :first_name, :last_name, :phone, presence:true
+    validates :email, presence: true,uniqueness: true, format: { with: VALID_EMAIL_REGEX }
     validates :session_token, presence:true, uniqueness:true
     validates :password_digest, presence: { message: 'password must not be blank'}
-    validates :password, length: {minimum:8, allow_nil:true}
+    # validates :password, length: {minimum:8, allow_nil:true}
 
     belongs_to :company, 
     class_name: "Company",
@@ -39,23 +43,7 @@ class User < ApplicationRecord
     has_many :active_cleanings
     has_many :accounts, through: :active_cleanings, source: :account
 
-    def self.find_by_credentials(email,password)
-        user = User.find_by(email: email)
-
-        return nil if user.nil?
-
-        user && user.is_password?(password) ? user : nil
-    end
-
-    def password=(password)
-        @password = password
-
-        self.password_digest = BCrypt::Password.create(password)
-    end
-
-    def is_password?(password)
-        BCrypt::Password.new(self.password_digest).is_password?(password)
-    end
+    
 
     def generate_session_token
         token = SecureRandom.urlsafe_base64(16)
