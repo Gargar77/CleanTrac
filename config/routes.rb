@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create,:destroy]
   end
 
-  match '*path' => 'static_pages#root'
+ 
 
 end

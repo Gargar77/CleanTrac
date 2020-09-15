@@ -8,8 +8,8 @@ class UsersController < ApplicationController
         login!(@user)
         render :show
       else
-        flash.now[:errors] = @user.errors
-        render :new
+        @errors = @user.errors
+        render :error
       end
     end
   end
