@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import AuthForm from './containers/AuthForm';
 
 function App() {
   return (
     <div className="App">
-      <h1>React app!</h1>
+      <AuthForm action="Sign In"/>
     </div>
   );
 }

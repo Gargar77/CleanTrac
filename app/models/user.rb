@@ -14,7 +14,7 @@
 #  last_name       :string           not null
 #  leader_id       :integer
 #
-class User < ApplicationRecord
+class User < ApplicationRecord::Base
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
     has_secure_password
@@ -43,7 +43,6 @@ class User < ApplicationRecord
     has_many :active_cleanings
     has_many :accounts, through: :active_cleanings, source: :account
 
-    
 
     def generate_session_token
         token = SecureRandom.urlsafe_base64(16)
