@@ -1,7 +1,7 @@
 # README
 
   
-This app is currently in development. A janitorial management app that helps small to medium sized cleaning companies have organize their accounts and facilitate communications between workers, all in a user-friendly web app.
+This app is currently in development. A janitorial management app that helps small to medium sized cleaning companies organize their accounts and facilitate communications between workers, all in a user-friendly web app.
 
 The main reason I decided to develop this app, was based on my previous expereince owning a small janitorial company with 10 employees. Even with such a small amount of employees, there were still difficulties when it came to communicating specific account changes or request to my team.
 
