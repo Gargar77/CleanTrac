@@ -26,7 +26,7 @@ create-react-app library ( this creates all the optimal boilerplate and folder s
 ``rails start`` script will run a Procfile which will do the following:
 1. start the Postgresql database ( if running on WSL)
 2. start the react development server on port 3000
-3. start the rails API server on port 30001
+3. start the rails API server on port 3001
 
 with these two servers up and running, you are able to edit either the backend or frontend and see the results in real time ( thanks to hotloading on both servers).
 
