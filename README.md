@@ -18,9 +18,9 @@ create-react-app library ( this creates all the optimal boilerplate and folder s
 
 *How To Run*
 
-1. run ```bundle install``` on root folder
+1. run ```bundle install``` on root folder (install rails dependencies)
 2. ``cd client`` ( this is where the front end is being built)
-3. ``npm install``
+3. ``npm install`` (install frontend dependencies)
 4. ``rails start``
 
 ``rails start`` script will run a Procfile which will do the following:
