@@ -5,8 +5,7 @@ import {Redirect, withRouter} from 'react-router-dom';
 
 class Accounts extends Component {
     render() {
-        console.log(this.props.accounts)
-       return <h1>ACCOUNTS</h1>
+    return <h1>Account Name: {this.props.accounts[12].accountName}</h1>
     }
 }
 const mapStateToProps = state => {
