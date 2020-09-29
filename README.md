@@ -1,28 +1,34 @@
 # README
 
   
-A janitorial management app that helps both the employer and employee have access to all their needs on a user-friendly web app.
+This app is currently in development. A janitorial management app that helps small to medium sized cleaning companies organize their accounts and facilitate communications between workers, all in a user-friendly web app.
+
+The main reason I decided to develop this app, was based on my previous expereince owning a small janitorial company with 10 employees. Even with such a small amount of employees, there were still difficulties when it came to communicating specific account changes or request to my team.
+
+this Project is structured using Rails as our backend API, and React-redux environment handling the frontend rendering.
+
+**Backend**
+Ruby v2.5.3
+Rails v5.2.0
+Database: PostgresQL  v10.14
+
+**Frontend**
+create-react-app library ( this creates all the optimal boilerplate and folder structure for a react application)
 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+*How To Run*
 
-Things you may want to cover:
+1. run ```bundle install``` on root folder (install rails dependencies)
+2. ``cd client`` ( this is where the front end is being built)
+3. ``npm install`` (install frontend dependencies)
+4. ``rails start``
 
-* Ruby version
+``rails start`` script will run a Procfile which will do the following:
+1. start the Postgresql database ( if running on WSL)
+2. start the react development server on port 3000
+3. start the rails API server on port 3001
 
-* System dependencies
+with these two servers up and running, you are able to edit either the backend or frontend and see the results in real time ( thanks to hotloading on both servers).
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+update 9/23/2020:
+currently working on designing the frontend layout
