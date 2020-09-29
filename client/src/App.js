@@ -7,13 +7,13 @@ import Accounts from './containers/Accounts';
 
 
 function App(props) {
-  console.log(props)
   return (
  
     <div className="App">
       <Switch>
-        <Route path="/" exact component={Accounts}/>
+        <Route path="/accounts" exact component={Accounts}/>
         <Route path="/auth" exact component={Auth}/>
+        
       </Switch>
     </div>
   );

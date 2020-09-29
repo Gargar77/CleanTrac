@@ -1,6 +1,7 @@
 // basic structure of a form in order to request from rails API
 import React, { Component } from 'react';
 import AuthForm from '../components/Forms/AuthForm';
+import { Redirect } from 'react-router-dom';
 class Auth extends Component {
     state= {
         authTokenReceived: false
@@ -46,10 +47,17 @@ class Auth extends Component {
     }
     
     render() {
-
         
+        let content;
+        if (this.state.authTokenReceived) {
+            content = <Redirect to="/accounts"/>
+        } else {
+            content = <AuthForm submit={this.formSubmitHandler} action="LOGIN"/>
+        }
         return (
-            <AuthForm submit={this.formSubmitHandler} action="LOGIN"/>
+            <div>
+                {content}
+            </div>
         )
     }
 }
