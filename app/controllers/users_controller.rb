@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :authenticate_user, except: [:create]
   
     def show
-        render json: current_user, status: :created
+       @user = current_user
     end
 
     def create

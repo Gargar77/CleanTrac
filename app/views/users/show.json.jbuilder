@@ -1,4 +1,3 @@
-<!-- singed in -->
 
 json.extract! @user
 
@@ -9,3 +8,5 @@ json.user do
     json.email @user.email
     json.phone @user.phone
 end
+
+json.random "hello"

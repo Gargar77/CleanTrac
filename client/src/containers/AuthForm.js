@@ -41,6 +41,7 @@ class AuthForm extends Component {
             .then((token)=> {
                 this.getuserData(token)
             })
+            .then(()=> this.setState({authTokenReceived:true}))
             .catch(error => console.log("[token_request_error]",error))
         
     }
