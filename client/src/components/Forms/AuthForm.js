@@ -2,7 +2,7 @@ import React from 'react';
 
 const authForm = (props) => {
     return (
-        <form onSubmit={this.formSubmitHandler} className="form auth"method="POST">
+        <form onSubmit={props.submit} className="form auth"method="POST">
              <label htmlFor="username-input">Username</label>
             <input
                 className="form__input"
@@ -17,7 +17,7 @@ const authForm = (props) => {
                 name="auth[password]"
                 id="password-input"
             />
-            <button type="submit" className="button">{this.props.action}</button>
+            <button type="submit" className="button">{props.action}</button>
         </form>
     );
 }

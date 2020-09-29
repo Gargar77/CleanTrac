@@ -49,7 +49,7 @@ class Auth extends Component {
 
         
         return (
-            <AuthForm/>
+            <AuthForm submit={this.formSubmitHandler} action="LOGIN"/>
         )
     }
 }
