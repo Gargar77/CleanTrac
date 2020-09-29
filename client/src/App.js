@@ -1,12 +1,20 @@
 import React from 'react';
+import { Route,Switch } from 'react-router-dom';
+
 import './App.css';
-import AuthForm from './containers/AuthForm';
+import Auth from './containers/Auth';
+import Accounts from './containers/Accounts';
 
-function App() {
+
+function App(props) {
+  console.log(props)
   return (
-
+ 
     <div className="App">
-      <AuthForm action="Sign In"/>
+      <Switch>
+        <Route path="/" exact component={Accounts}/>
+        <Route path="/auth" exact component={Auth}/>
+      </Switch>
     </div>
   );
 }

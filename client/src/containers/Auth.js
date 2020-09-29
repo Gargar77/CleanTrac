@@ -1,8 +1,7 @@
 // basic structure of a form in order to request from rails API
 import React, { Component } from 'react';
-// import {auth} from  '../axios-orders';
-
-class AuthForm extends Component {
+import AuthForm from '../components/Forms/AuthForm';
+class Auth extends Component {
     state= {
         authTokenReceived: false
     }
@@ -47,26 +46,12 @@ class AuthForm extends Component {
     }
     
     render() {
+
+        
         return (
-        <form onSubmit={this.formSubmitHandler} className="form auth"method="POST">
-             <label htmlFor="username-input">Username</label>
-            <input
-                className="form__input"
-                id="username-input"
-                type="email"
-                name="auth[username]"
-            />
-            <label htmlFor="password-input">Password</label>
-            <input
-                className="form__input"
-                type="password"
-                name="auth[password]"
-                id="password-input"
-            />
-            <button type="submit" className="button">{this.props.action}</button>
-        </form>
+            <AuthForm/>
         )
     }
 }
 
-export default AuthForm;
+export default Auth;
