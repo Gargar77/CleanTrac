@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom';
-
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './App.css';
 import Auth from './containers/Auth';
@@ -20,5 +20,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

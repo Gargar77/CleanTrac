@@ -1,29 +1,13 @@
 // basic structure of a form in order to request from rails API
 import React, { Component } from 'react';
-import AuthForm from '../components/Forms/AuthForm';
+import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
+
+
+import AuthForm from '../components/Forms/AuthForm';
+import * as actions from '../store/actions'
+import Spinner from '../components/UI/Spinner/Spinner';
 class Auth extends Component {
-    state= {
-        authTokenReceived: false
-    }
-
-
-    getuserData = (authToken) => {
-        // get user data upon receiving a jwt token
-        fetch('http://localhost:3001/api/user',{
-            method:'GET',
-            headers: {
-                'Accept': 'application/json',
-                'content-type':'application/json',
-                'Authorization' : 'Bearer ' + authToken.jwt
-            }
-        })
-        .then((response) => response.json())
-        .then((responseData) => {
-          console.log(responseData);
-        })
-        .catch(error => console.log("error",error))
-    }
 
     formSubmitHandler = (event) => {
         // handle the submit action in the form
@@ -32,34 +16,53 @@ class Auth extends Component {
         formData.append("auth[email",event.target[0].value);
         formData.append("auth[password]",event.target[1].value)
         
-        fetch('http://localhost:3001/auth/signin', {
-            method:'POST',
-            body: formData,
-            redirect: 'manual'
-        })
-            .then(response => response.json())
-            .then((token)=> {
-                this.getuserData(token)
-            })
-            .then(()=> this.setState({authTokenReceived:true}))
-            .catch(error => console.log("[token_request_error]",error))
-        
+        this.props.onAuth(formData);
     }
     
     render() {
         
-        let content;
-        if (this.state.authTokenReceived) {
-            content = <Redirect to="/accounts"/>
-        } else {
-            content = <AuthForm submit={this.formSubmitHandler} action="LOGIN"/>
+
+        let authRedirect = null;
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to={this.props.authRedirect}/>
         }
+       
+        let form = <AuthForm submit={this.formSubmitHandler} action="LOGIN"/>
+        if (this.props.loading) {
+            form = <Spinner/>
+        }
+        let errorMessage = null
+        if (this.props.error) {
+            errorMessage = (
+                <p style={{color:'red'}}>{this.props.error}</p>
+            );
+        }
+
         return (
             <div>
-                {content}
+                {authRedirect}
+                {form}
+                {errorMessage}
             </div>
         )
     }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+    return {
+        error:state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        authRedirect: state.auth.authRedirectPath,
+        loading: state.auth.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (formData) => dispatch(actions.auth(formData))
+
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Auth);
