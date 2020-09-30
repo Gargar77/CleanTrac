@@ -30,6 +30,14 @@ export const logInUser = (userData) => {
     }
 }
 
+export const logOutUSer = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
+    return {
+        type:actionTypes.AUTH_LOGOUT
+    }
+}
+
 export const fetchUserData = (authToken,dispatch) => {
     // get user data upon receiving a jwt token
     let token = authToken.jwt
