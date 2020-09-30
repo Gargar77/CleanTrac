@@ -23,6 +23,13 @@ export const authFail = (error) => {
     }
 }
 
+export const logInUser = (userData) => {
+    return {
+        type:actionTypes.LOAD_USER_DATA,
+        data:userData
+    }
+}
+
 export const fetchUserData = (authToken,dispatch) => {
     // get user data upon receiving a jwt token
     let token = authToken.jwt
@@ -37,7 +44,9 @@ export const fetchUserData = (authToken,dispatch) => {
     .then((res)=> res.json())
     .then((jsonRes) => {
         saveSessionToLocal(token)
-        dispatch(authSuccess(token,jsonRes))
+        dispatch(authSuccess(token))
+        dispatch(logInUser(jsonRes.user))
+        console.log(jsonRes)
     })
     .catch(error => console.log("[userFetchError]",error))
 }
