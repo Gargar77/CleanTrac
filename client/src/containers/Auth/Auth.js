@@ -32,7 +32,7 @@ class Auth extends Component {
             authRedirect = <Redirect to={this.props.authRedirect}/>
         }
        
-        let form = <SignInForm submit={this.formSubmitHandler} action="LOGIN"/>
+        let form = <SignInForm submit={this.formSubmitHandler}/>
 
         if (this.props.loading) {
             form = <Spinner/>
