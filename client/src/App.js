@@ -3,8 +3,8 @@ import { Route, Switch, Redirect,withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
-import Auth from './containers/Auth';
-import Accounts from './containers/Accounts';
+import Auth from './containers/Auth/Auth';
+import Accounts from './containers/Accounts/Accounts';
 
 
 

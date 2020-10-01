@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 
-import AuthForm from '../components/Forms/AuthForm';
-import * as actions from '../store/actions'
-import Spinner from '../components/UI/Spinner/Spinner';
+import AuthForm from '../../components/Forms/AuthForm';
+import * as actions from '../../store/actions'
+import Spinner from '../../components/UI/Spinner/Spinner';
 class Auth extends Component {
 
     formSubmitHandler = (event) => {
