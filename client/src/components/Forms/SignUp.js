@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import Input from '../UI/Input/Input';
+
+import Button from '../UI/Button/Button';
+
 class signUpForm extends Component {
     state = {
         orderForm: {
@@ -191,8 +194,8 @@ class signUpForm extends Component {
                     />
 
                 ))}
-                    <button type="submit" className="button">SignUp</button>
-
+                <Button disabled={!this.state.formIsValid}>Sign up</Button>
+                
             
             </form>
         );

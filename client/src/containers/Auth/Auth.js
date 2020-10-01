@@ -8,10 +8,11 @@ import SignInForm from '../../components/Forms/SignIn';
 import SignUpForm from '../../components/Forms/SignUp';
 import * as actions from '../../store/actions'
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
 class Auth extends Component {
 
     state = {
-        isSignup:false,
+        isSignIn:false,
         isLanding:true
     }
 
@@ -24,6 +25,24 @@ class Auth extends Component {
         
         this.props.onAuth(formData);
     }
+
+    startSignInHandler = () => {
+        this.setState({
+            isSignIn:true,
+            isLanding:false
+        })
+    }
+
+    startSignUpHandler = () => {
+        this.setState({isLanding:false})
+    }
+
+    goBackHandler = () => {
+        this.setState({
+            isSignIn:false,
+            isLanding:true
+        })
+    }
     
     render() {
         
@@ -32,14 +51,20 @@ class Auth extends Component {
         if (this.props.isAuthenticated) {
             authRedirect = <Redirect to={this.props.authRedirect}/>
         }
-       
-        let form = <SignInForm submit={this.formSubmitHandler}/>
-
+        let form = (
+            <div>
+                <Button clicked={this.startSignUpHandler}>Sign up</Button>
+                <p>Already have an account? <span onClick={this.startSignInHandler}>Sign in</span></p>
+            </div>
+        )
         if (this.props.loading) {
             form = <Spinner/>
-        } else if (this.state.isSignup) {
+        } else if (this.state.isSignIn && !this.state.isLanding) {
+            form = <SignInForm submit={this.formSubmitHandler}/>
+        } else if (!this.state.isLanding) {
             form = <SignUpForm submit={this.formSubmitHandler}/>
         }
+
         let errorMessage = null
         if (this.props.error) {
             errorMessage = (
@@ -47,27 +72,20 @@ class Auth extends Component {
             );
         }
 
-        let auth = (
+
+
+        console.log(form);
+        
+        let nav = null;
+        if (!this.state.isLanding) 
+           nav = <li onClick={this.goBackHandler}>Back</li>
+        
+        return (
             <div>
+                {nav}
                 {authRedirect}
                 {form}
                 {errorMessage}
-            </div>
-        )
-
-        if (this.state.isLanding) {
-            auth = (
-                <div>
-                    <button>Sign up</button>
-                    <p>Already have an account? <span>Sign in</span></p>
-                </div>
-
-            )
-        }
-
-        return (
-            <div>
-                {auth}
             </div>
         )
     }

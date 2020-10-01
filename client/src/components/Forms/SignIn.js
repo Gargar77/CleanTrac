@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import Input from '../UI/Input/Input';
+
+import Button from '../UI/Button/Button';
+
 class signInForm extends Component {
 
     state = {
@@ -97,7 +100,7 @@ class signInForm extends Component {
                     />
 
                 ))}
-                <button type="submit" className="button">Login</button>
+                <Button >Sign in</Button>
             </form>
         );
 
