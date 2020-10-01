@@ -22,7 +22,11 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       content = (
         // auth required routes
-      <Route path="/accounts" exact component={Accounts}/>
+      <Switch>
+        <Route path="/accounts" exact component={Accounts}/>
+        <Redirect to="/accounts"/>
+      </Switch>
+      
       );
     }
 
