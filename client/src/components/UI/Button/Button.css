@@ -1,0 +1,8 @@
+.button {
+    background: linear-gradient(var(--green-blue) 10%,var(--pastel-green));
+    height: 50px;
+    width: 150px;
+    border-radius: 10px;
+    border-style: hidden;
+    filter: drop-shadow(1px 2px 3px rgba(0, 0, 0,0.5))
+}
