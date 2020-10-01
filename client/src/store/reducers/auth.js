@@ -20,7 +20,7 @@ const authSuccess = (state,action) => {
         ...state,
         token: action.idToken,
         error:null,
-        loading:true
+        loading:false
     };
 }
 
