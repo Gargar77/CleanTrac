@@ -7,11 +7,9 @@ import Auth from './containers/Auth/Auth';
 import Accounts from './containers/Accounts/Accounts';
 
 
-
 class App extends Component {
   
   render() {
-
     let content = (
       <Switch>
         <Route path="/auth" exact component={Auth}/>
@@ -32,7 +30,7 @@ class App extends Component {
 
     return  (
          <div className="App">
-          {content}
+             {content}
         </div>
      
     );

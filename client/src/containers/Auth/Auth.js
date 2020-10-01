@@ -52,7 +52,8 @@ class Auth extends Component {
             authRedirect = <Redirect to={this.props.authRedirect}/>
         }
         let auth = (
-            <div>
+            <div className="landing">
+                <h1>Let's Get Started</h1>
                 <Button clicked={this.startSignUpHandler}>Sign up</Button>
                 <p>Already have an account? <span onClick={this.startSignInHandler}>Sign in</span></p>
             </div>
@@ -80,7 +81,7 @@ class Auth extends Component {
            nav = <li onClick={this.goBackHandler}>Back</li>
         
         return (
-            <div>
+            <div className="auth">
                 {nav}
                 {authRedirect}
                 {auth}
