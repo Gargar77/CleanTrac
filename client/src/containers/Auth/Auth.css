@@ -1,3 +1,31 @@
 .auth {
+    height: 100%;
     background-color: var(--pure-blue);
+    background: linear-gradient(var(--pure-blue) 10%,var(--light-blue));
+    color:white; 
 }
+
+.landing {
+    height: 100%;
+}
+
+.landing h1 {
+    padding-top: 20%;
+    font-size: 2.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.landing button {
+    margin:40px
+}
+
+.landing p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.landing__signin {
+    color: var(--pastel-green);
+
+}
+

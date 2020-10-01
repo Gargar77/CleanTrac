@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --pure-blue: #0D52FF;
   --dark-blue: #0C85E8;
@@ -6,6 +10,16 @@
   --pastel-green: #0DFFA7;
 }
 
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
 
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
