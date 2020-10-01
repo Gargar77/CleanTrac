@@ -51,18 +51,18 @@ class Auth extends Component {
         if (this.props.isAuthenticated) {
             authRedirect = <Redirect to={this.props.authRedirect}/>
         }
-        let form = (
+        let auth = (
             <div>
                 <Button clicked={this.startSignUpHandler}>Sign up</Button>
                 <p>Already have an account? <span onClick={this.startSignInHandler}>Sign in</span></p>
             </div>
         )
         if (this.props.loading) {
-            form = <Spinner/>
+            auth = <Spinner/>
         } else if (this.state.isSignIn && !this.state.isLanding) {
-            form = <SignInForm submit={this.formSubmitHandler}/>
+            auth = <SignInForm submit={this.formSubmitHandler}/>
         } else if (!this.state.isLanding) {
-            form = <SignUpForm submit={this.formSubmitHandler}/>
+            auth = <SignUpForm submit={this.formSubmitHandler}/>
         }
 
         let errorMessage = null
@@ -74,7 +74,6 @@ class Auth extends Component {
 
 
 
-        console.log(form);
         
         let nav = null;
         if (!this.state.isLanding) 
@@ -84,7 +83,7 @@ class Auth extends Component {
             <div>
                 {nav}
                 {authRedirect}
-                {form}
+                {auth}
                 {errorMessage}
             </div>
         )
