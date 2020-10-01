@@ -11,7 +11,8 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class Auth extends Component {
 
     state = {
-        isSignup:false
+        isSignup:false,
+        isLanding:true
     }
 
     formSubmitHandler = (event) => {
@@ -46,11 +47,27 @@ class Auth extends Component {
             );
         }
 
-        return (
+        let auth = (
             <div>
                 {authRedirect}
                 {form}
                 {errorMessage}
+            </div>
+        )
+
+        if (this.state.isLanding) {
+            auth = (
+                <div>
+                    <button>Sign up</button>
+                    <p>Already have an account? <span>Sign in</span></p>
+                </div>
+
+            )
+        }
+
+        return (
+            <div>
+                {auth}
             </div>
         )
     }
