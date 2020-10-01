@@ -2,18 +2,23 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import './Auth.css';
 
-
-import AuthForm from '../../components/Forms/AuthForm';
+import SignInForm from '../../components/Forms/SignIn';
+import SignUpForm from '../../components/Forms/SignUp';
 import * as actions from '../../store/actions'
 import Spinner from '../../components/UI/Spinner/Spinner';
 class Auth extends Component {
+
+    state = {
+        isSignup:false
+    }
 
     formSubmitHandler = (event) => {
         // handle the submit action in the form
         event.preventDefault();
         const formData = new FormData();
-        formData.append("auth[email",event.target[0].value);
+        formData.append("auth[email]",event.target[0].value);
         formData.append("auth[password]",event.target[1].value)
         
         this.props.onAuth(formData);
@@ -27,14 +32,17 @@ class Auth extends Component {
             authRedirect = <Redirect to={this.props.authRedirect}/>
         }
        
-        let form = <AuthForm submit={this.formSubmitHandler} action="LOGIN"/>
+        let form = <SignInForm submit={this.formSubmitHandler} action="LOGIN"/>
+
         if (this.props.loading) {
             form = <Spinner/>
+        } else if (this.state.isSignup) {
+            form = <SignUpForm submit={this.formSubmitHandler}/>
         }
         let errorMessage = null
         if (this.props.error) {
             errorMessage = (
-                <p style={{color:'red'}}>{this.props.error}</p>
+                <p className="auth-error" style={{color:'red'}}>{this.props.error}</p>
             );
         }
 

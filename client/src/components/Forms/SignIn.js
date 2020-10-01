@@ -1,14 +1,14 @@
 import React from 'react';
 
-const authForm = (props) => {
+const signInForm = (props) => {
     return (
-        <form onSubmit={props.submit} className="form auth"method="POST">
-             <label htmlFor="username-input">Username</label>
+        <form onSubmit={props.submit} className="form signin">
+             <label htmlFor="username-input">Email</label>
             <input
                 className="form__input"
                 id="username-input"
                 type="email"
-                name="auth[username]"
+                name="auth[email]"
             />
             <label htmlFor="password-input">Password</label>
             <input
@@ -17,9 +17,9 @@ const authForm = (props) => {
                 name="auth[password]"
                 id="password-input"
             />
-            <button type="submit" className="button">{props.action}</button>
+            <button type="submit" className="button">Login</button>
         </form>
     );
 }
 
-export default authForm;
+export default signInForm;
