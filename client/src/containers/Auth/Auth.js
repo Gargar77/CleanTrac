@@ -9,7 +9,6 @@ import SignUpForm from '../../components/Forms/SignUp';
 import * as actions from '../../store/actions'
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
-import {ReactComponent as CleaningSVG} from '../../assets/cleaning.svg';
 import {ReactComponent as SpongeSVG} from '../../assets/sponge.svg';
 
 class Auth extends Component {
@@ -106,7 +105,7 @@ class Auth extends Component {
         
         let nav = null;
         if (!this.state.isLanding) 
-           nav = <li onClick={this.goBackHandler}>Back</li>
+           nav = <li className="auth__nav" onClick={this.goBackHandler}></li>
         
         return (
             <div className="auth">

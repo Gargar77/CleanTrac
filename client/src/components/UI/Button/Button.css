@@ -6,4 +6,6 @@
     border-style: hidden;
     filter: drop-shadow(1px 2px 3px rgba(0, 0, 0,0.5));
     color: whitesmoke;
+    font-size: 1.2rem;
+    font-weight: 700;
 }

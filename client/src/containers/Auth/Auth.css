@@ -1,23 +1,36 @@
 .auth {
     height: 100%;
     background-color: var(--pure-blue);
-    background: linear-gradient(var(--pure-blue) 10%,var(--light-blue));
+    background: linear-gradient(var(--light-blue),var(--pure-blue));
     color:whitesmoke; 
 }
+
+
+.auth__nav:before {
+    content: "< Back";
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+.auth__nav {
+    text-align: left;
+    list-style: none;
+    padding: 20px;
+}
+
 
 .landing {
     height: 100%;
 }
 
 .landing h1 {
-    padding-top: 20%;
+    padding: 24% 0;
     font-size: 2.5rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
 }
 
 .landing button {
-    margin:40px
+    margin:45px;
 }
 
 .landing p {
