@@ -6,6 +6,7 @@ import './App.css';
 import Auth from './containers/Auth/Auth';
 import Accounts from './containers/Accounts/Accounts';
 import * as actions from './store/actions/index';
+import LoadScreen from './components/UI/LoadScreen/LoadScreen';
 
 class App extends Component {
 
@@ -13,7 +14,16 @@ class App extends Component {
     this.props.onTryAutoSignup();
   }
 
+  
+
+
   render() {
+
+    let loader = null;
+    if (this.props.loading) {
+      loader = <LoadScreen/>
+    }
+
     let content = (
       <Switch>
         <Route path="/auth" exact component={Auth}/>
@@ -34,7 +44,8 @@ class App extends Component {
 
     return  (
          <div className="App">
-             {content}
+            {loader}
+            {content}
         </div>
      
     );
@@ -49,7 +60,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    loading: state.auth.loading
   }
 }
 

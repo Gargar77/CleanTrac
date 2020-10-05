@@ -56,7 +56,7 @@ export const fetchUserData = (authToken,dispatch) => {
         dispatch(authSuccess(authToken))
         dispatch(logInUser(jsonRes.user))
     })
-    .catch(error => console.log("[userFetchError]",error))
+    .catch(err => dispatch(authFail(err)))
 }
 
 export const checkAuthTimeout = (expirationTime) => {
@@ -78,7 +78,7 @@ export const saveSessionToLocal = (token) => {
 
 export const auth = (formData) => {
     return dispatch => {
-        dispatch(authStart('auth'));
+        dispatch(authStart());
         let url = 'http://localhost:3001/auth/signin';
         // if (isSignUp) {
         //     url = 'http://localhost:3001/auth/signup';
@@ -106,9 +106,9 @@ export const auth = (formData) => {
 
 export const signUp = (formData) => {
     return dispatch => {
+        dispatch(authStart());
 
-        let url = 'http://localhost:3001/auth/signup';
-
+        let url = 'http://localhost:3001/auth/signup';  
         fetch(url, {
             method:'POST',
             body: formData,
@@ -126,7 +126,7 @@ export const signUp = (formData) => {
                let ds = auth(newForm);
                ds(dispatch);
         })
-        .catch(err=> console.log(err))
+        .catch(err=> dispatch(authFail(err)))
     } 
 }
 
@@ -141,6 +141,7 @@ export const seAuthRedirectPath = (path) => {
 export const authCheckState = () => {
     console.log('checking localstorage')
     return dispatch => {
+        dispatch(authStart());
         const token = localStorage.getItem('token');
         if (!token) {
             dispatch(logOut());

@@ -1,0 +1,14 @@
+.load-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(var(--light-blue),var(--pure-blue));
+    z-index: 100;
+}
+
+.load-screen .sk-chase {
+   margin: 45vh auto;
+
+}
