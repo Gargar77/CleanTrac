@@ -10,6 +10,8 @@ import * as actions from '../../store/actions'
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 import {ReactComponent as CleaningSVG} from '../../assets/cleaning.svg';
+import {ReactComponent as SpongeSVG} from '../../assets/sponge.svg';
+
 class Auth extends Component {
 
     state = {
@@ -78,7 +80,8 @@ class Auth extends Component {
         let auth = (
             <div className="landing">
                 <h1>Let's Get Started</h1>
-                <CleaningSVG/>
+                {/* <CleaningSVG/> */}
+                <SpongeSVG/>
                 <Button clicked={this.startSignUpHandler}>Sign up</Button>
                 <p>Already have an account? <span onClick={this.startSignInHandler} className="landing__signin">Sign in</span></p>
             </div>
