@@ -30,7 +30,7 @@ export const logInUser = (userData) => {
     }
 }
 
-export const logOutUSer = () => {
+export const logOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     return {
@@ -40,23 +40,31 @@ export const logOutUSer = () => {
 
 export const fetchUserData = (authToken,dispatch) => {
     // get user data upon receiving a jwt token
-    let token = authToken.jwt
+
     fetch('http://localhost:3001/api/user',{
         method:'GET',
         headers: {
             'Accept': 'application/json',
             'content-type':'application/json',
-            'Authorization' : 'Bearer ' + token
+            'Authorization' : 'Bearer ' + authToken
         }
     })
     .then((res)=> res.json())
     .then((jsonRes) => {
-        saveSessionToLocal(token)
-        dispatch(authSuccess(token))
-        dispatch(logInUser(jsonRes.user))
         console.log(jsonRes)
+        saveSessionToLocal(authToken)
+        dispatch(authSuccess(authToken))
+        dispatch(logInUser(jsonRes.user))
     })
     .catch(error => console.log("[userFetchError]",error))
+}
+
+export const checkAuthTimeout = (expirationTime) => {
+    return dispatch => {
+        setTimeout( ()=> {
+            dispatch(logOut());
+        },expirationTime * 1000);
+    }
 }
 
 export const saveSessionToLocal = (token) => {
@@ -88,10 +96,9 @@ export const auth = (formData) => {
                 throw Error('Incorrect Email / Password');
             }})
             .then((token)=> { 
-                fetchUserData(token,dispatch);
+                fetchUserData(token.jwt,dispatch);
             })
         .catch(err => {
-            console.log(err)
              dispatch(authFail(err))
         })
     }
@@ -127,6 +134,27 @@ export const seAuthRedirectPath = (path) => {
     return {
         type: actionTypes.SET_AUTH_REDIRECT_PATH,
         path: path
+    }
+}
+
+
+export const authCheckState = () => {
+    console.log('checking localstorage')
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(logOut());
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            if (expirationDate >= new Date()) {
+                console.log('localStorage TOKEN:',token)
+                fetchUserData(token,dispatch);
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+
+            } else {
+                dispatch(logOut());
+            }
+        }
     }
 }
 

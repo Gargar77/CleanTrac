@@ -100,7 +100,7 @@ class signInForm extends Component {
                     />
 
                 ))}
-                <Button >Sign in</Button>
+                <Button>Sign in</Button>
             </form>
         );
 

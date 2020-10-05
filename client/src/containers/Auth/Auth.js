@@ -12,7 +12,6 @@ import Button from '../../components/UI/Button/Button';
 import {ReactComponent as SpongeSVG} from '../../assets/sponge.svg';
 
 class Auth extends Component {
-
     state = {
         isSignIn:false,
         isLanding:true
@@ -68,7 +67,7 @@ class Auth extends Component {
             isLanding:true
         })
     }
-    
+
     render() {
         
 

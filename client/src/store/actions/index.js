@@ -1,6 +1,7 @@
 export {
     auth,
     fetchUserData,
-    logOutUSer,
-    signUp
+    signUp,
+    authCheckState,
+    logOut
 } from './auth'

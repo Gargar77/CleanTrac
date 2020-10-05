@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 import './App.css';
 import Auth from './containers/Auth/Auth';
 import Accounts from './containers/Accounts/Accounts';
-
+import * as actions from './store/actions/index';
 
 class App extends Component {
-  
+
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+  }
+
   render() {
     let content = (
       <Switch>
@@ -37,10 +41,18 @@ class App extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: ()=> dispatch(actions.authCheckState())
+  }
+}
+
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));

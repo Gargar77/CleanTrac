@@ -6,7 +6,11 @@ import {Redirect, withRouter} from 'react-router-dom';
 class Accounts extends Component {
     render() {
         return (
-        <h1>{`welcome ${this.props.user.firstName}`}</h1>
+        <div className="accounts-container">
+            <div>HEADER</div>
+            <div>BODY</div>
+            <div>Footer</div>
+        </div>
         )}
 }
 const mapStateToProps = state => {
