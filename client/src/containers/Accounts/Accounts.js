@@ -5,13 +5,14 @@ import {Redirect, withRouter} from 'react-router-dom';
 
 class Accounts extends Component {
     render() {
-    console.log('API info in Accounts:',this.props.state)
-    return <h1>Accounts</h1>
-    }
+        return (
+        <h1>{`welcome ${this.props.user.firstName}`}</h1>
+        )}
 }
 const mapStateToProps = state => {
     return {
-        accounts: state.auth
+        accounts: state.accounts,
+        user: state.user
     }
 }
 
