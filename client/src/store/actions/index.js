@@ -1,5 +1,6 @@
 export {
     auth,
     fetchUserData,
-    logOutUSer
+    logOutUSer,
+    signUp
 } from './auth'

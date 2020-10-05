@@ -28,6 +28,7 @@ const input = (props) => {
                 <select
                     onChange={props.changed}
                     className={inputClasses.join(' ')}  
+                    name={props.elementConfig.name}
                     value={props.value}>
                     {props.elementConfig.options.map(option => (
                         <option value={option.value} key={option.value}>
@@ -47,7 +48,6 @@ const input = (props) => {
 
     return(
       <div className="form__input">
-        <label>{props.label}</label>
         {inputEl}
       </div>
     );

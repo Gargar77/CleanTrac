@@ -1,0 +1,34 @@
+.form__input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.input label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+.input {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    border-radius: 10px;    
+}
+
+.input:focus {
+    outline: none;
+    background-color: #c0ffe8;
+    box-shadow: inset 0px 0px 4px 0px #0ce8d6;
+}
+
+.invalid {
+    border: 1px solid red;
+    box-shadow: inset 0 0 16px -3px red;
+}

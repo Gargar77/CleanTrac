@@ -20,11 +20,34 @@ class Auth extends Component {
     formSubmitHandler = (event) => {
         // handle the submit action in the form
         event.preventDefault();
-        const formData = new FormData();
-        formData.append("auth[email]",event.target[0].value);
-        formData.append("auth[password]",event.target[1].value)
-        
-        this.props.onAuth(formData);
+        let formEl = event.currentTarget.childNodes;
+        // const headers = new Headers();
+        // headers.set('Accept','application/json');
+
+        let formData = new FormData();
+        for (let i = 0; i < formEl.length - 1; i++) {
+            let node = formEl[i].childNodes[0];
+            if (node.name === 'uniqueId') {
+                let uniqueIds = this.parseUniqueId(node.value);
+                formData.append('user[company_id]',uniqueIds[0]);
+                formData.append('user[leader_id]',uniqueIds[1]);
+                continue;
+            }
+            formData.append(node.name, node.value);
+        }
+
+
+        if (this.state.isSignIn) {
+            this.props.onAuth(formData);
+        } else {
+            this.props.onSignUp(formData);
+        }
+    }
+
+    parseUniqueId(idString) {
+        let ids = idString.split('_');
+        console.log(ids);
+        return ids;
     }
 
     startSignInHandler = () => {
@@ -104,8 +127,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (formData) => dispatch(actions.auth(formData))
-
+        onAuth: (formData) => dispatch(actions.auth(formData)),
+        onSignUp: (formData) => dispatch(actions.signUp(formData))
     }
 }
 

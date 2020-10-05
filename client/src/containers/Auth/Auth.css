@@ -2,7 +2,7 @@
     height: 100%;
     background-color: var(--pure-blue);
     background: linear-gradient(var(--pure-blue) 10%,var(--light-blue));
-    color:white; 
+    color:whitesmoke; 
 }
 
 .landing {

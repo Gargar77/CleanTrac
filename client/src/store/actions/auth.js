@@ -68,14 +68,13 @@ export const saveSessionToLocal = (token) => {
 }
 
 
-export const auth = (formData,isSignUp) => {
-
+export const auth = (formData) => {
     return dispatch => {
-        dispatch(authStart());
+        dispatch(authStart('auth'));
         let url = 'http://localhost:3001/auth/signin';
-        if (isSignUp) {
-            url = 'http://localhost:3001/auth/signup';
-        }
+        // if (isSignUp) {
+        //     url = 'http://localhost:3001/auth/signup';
+        // }
 
         fetch(url, {
             method:'POST',
@@ -86,15 +85,42 @@ export const auth = (formData,isSignUp) => {
             if (response.ok) {
                 return response.json();
             } else {
-                throw Error('Incorrect Email / Password')
-            }
-        })
-        .then((token)=>token ? fetchUserData(token,dispatch): null)
+                throw Error('Incorrect Email / Password');
+            }})
+            .then((token)=> { 
+                fetchUserData(token,dispatch);
+            })
         .catch(err => {
             console.log(err)
              dispatch(authFail(err))
         })
     }
+}
+
+export const signUp = (formData) => {
+    return dispatch => {
+
+        let url = 'http://localhost:3001/auth/signup';
+
+        fetch(url, {
+            method:'POST',
+            body: formData,
+            redirect: 'manual'
+        })
+        .then(response => {
+           console.log(response.status);
+                let email = formData.get('user[email]');
+                console.log(email);
+                let pw = formData.get('user[password]');
+                console.log(pw);
+                let newForm = new FormData();
+                newForm.append('auth[email]',email);
+                newForm.append('auth[password]',pw);
+               let ds = auth(newForm);
+               ds(dispatch);
+        })
+        .catch(err=> console.log(err))
+    } 
 }
 
 export const seAuthRedirectPath = (path) => {

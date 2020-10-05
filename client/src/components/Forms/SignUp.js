@@ -34,59 +34,12 @@ class signUpForm extends Component {
                 valid:false,
                 touched:false,
             },
-            street: {
+            phone: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'text',
-                    placeholder: 'Street',
-                    name: 'user[street]'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid:false,
-                touched:false
-    
-            },
-            state: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'State',
-                    name: 'user[state]'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid:false,
-                touched:false
-            },
-            zipCode: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Zip Code',
-                    name: 'user[zip_code]'
-                },
-            value: '',
-            validation: {
-                    required: true,
-                    minLength: 5,
-                    maxLength: 5
-                },
-                valid:false,
-                touched:false
-    
-            },
-    
-            country: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Country',
-                    name: 'user[country]'
+                    type: 'tel',
+                    placeholder: 'Phone Number',
+                    name: 'user[phone]'
                 },
             value: '',
             validation: {
@@ -94,9 +47,7 @@ class signUpForm extends Component {
             },
             valid:false,
             touched:false
-    
             },
-    
             email: {
                 elementType: 'input',
                 elementConfig: {
@@ -115,7 +66,7 @@ class signUpForm extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: '',
+                    placeholder: 'password',
                     name: 'user[password]'
                 },
             value: '',
@@ -124,9 +75,41 @@ class signUpForm extends Component {
             },
             valid:false,
             touched:false
+            },
+            uniqueId: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'unique ID',
+                    name:'uniqueId'
+                },
+            value: '',
+            validation: {
+                    required: true
+                },
+                valid:false,
+                touched:false
+
+            },
+            role: {
+                elementType: 'select',
+                elementConfig: {
+                   options:[
+                       {value: 'owner', displayValue: 'Owner'},
+                       {value: 'leader',displayValue: 'Leader'},
+                       {value: 'cleaner',displayValue: 'Cleaner'}
+                   ],
+                   name: 'user[role]'
+                },
+            value: 'owner',
+            validation: {
+                required: false
+            },
+            valid:true,
+            touched:false
             }
         },
-        formIsValid:false   
+        formIsValid:false 
     }
 
     checkValidity(value,rules) {
@@ -155,6 +138,8 @@ class signUpForm extends Component {
         const updatedFormElement = {
             ...updatedOrderForm[inputIndex]
         }
+        let currentRole = this.state.currentRole;
+     
 
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value,updatedFormElement.validation)
@@ -162,7 +147,6 @@ class signUpForm extends Component {
         updatedOrderForm[inputIndex] = updatedFormElement;
 
         let formisValid = true;
-
         for (let inputIndex in updatedOrderForm) {
             formisValid = updatedOrderForm[inputIndex].valid && formisValid;
         }
