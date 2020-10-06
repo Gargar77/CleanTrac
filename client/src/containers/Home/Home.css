@@ -4,3 +4,23 @@
     grid-template-columns: auto;
     grid-template-rows: 10% 80% 10%;
 }
+
+.nav-items {
+    display: flex;
+}
+
+
+.message a, .camera a {
+    display: inline-block;
+    height: 100%;
+}
+
+.message svg{
+    height: inherit;
+}
+
+.camera svg {
+    height: 90%;
+    padding-top: 7px;
+}
+

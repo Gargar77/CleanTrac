@@ -1,0 +1,7 @@
+.nav-link {
+    height: 100%;
+    width: fit-content;
+    position: relative;
+    list-style: none;
+}
+
