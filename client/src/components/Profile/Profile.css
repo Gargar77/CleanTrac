@@ -1,0 +1,23 @@
+.profile-image-container {
+    height: 100%;
+    width: fit-content;
+    position: relative;
+}
+
+.profile-image {
+    height: 70%;
+    border-radius: 50px;
+    position: absolute;
+    z-index: 1;
+    margin: 10px;
+    margin-top: 5px;
+}
+
+.profile-background {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    filter: drop-shadow(3px -1px 2px #0D52FF);
+}
+
