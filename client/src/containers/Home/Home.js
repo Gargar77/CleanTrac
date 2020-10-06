@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
+import './Home.css';
 
 
-class Accounts extends Component {
+class Home extends Component {
     render() {
         return (
         <div className="accounts-container">
@@ -22,5 +23,5 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps)(Accounts);
+export default connect(mapStateToProps)(Home);
 

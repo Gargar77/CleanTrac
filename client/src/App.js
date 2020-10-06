@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Auth from './containers/Auth/Auth';
-import Accounts from './containers/Accounts/Accounts';
+import Home from './containers/Home/Home';
 import * as actions from './store/actions/index';
 import LoadScreen from './components/UI/LoadScreen/LoadScreen';
 
@@ -35,8 +35,8 @@ class App extends Component {
       content = (
         // auth required routes
       <Switch>
-        <Route path="/accounts" exact component={Accounts}/>
-        <Redirect to="/accounts"/>
+        <Route path="/home" exact component={Home}/>
+        <Redirect to="/home"/>
       </Switch>
       
       );

@@ -4,7 +4,7 @@ const initialState = {
     token:null,
     error:null,
     loading:false,
-    authRedirectPath:'/accounts'
+    authRedirectPath:'/home'
 }
 
 const authStart = (state,action) => {
@@ -36,7 +36,8 @@ const authFail = (state,action) => {
 const authLogout = (state,action) => {
     return {
         ...state,
-        token:null
+        token:null,
+        loading:false
     }
 }
 
