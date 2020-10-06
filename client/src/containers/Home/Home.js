@@ -3,14 +3,15 @@ import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
 import './Home.css';
 
+import Nav from '../../components/UI/Nav/Nav';
 
 class Home extends Component {
     render() {
         return (
-        <div className="accounts-container">
-            <div>HEADER</div>
-            <div>BODY</div>
-            <div>Footer</div>
+        <div className="home-container">
+            <Nav>NAVBAR - HEADER</Nav>
+            <div style={{backgroundColor:"blue"}}></div>
+            <Nav>NAVBAR - FOOTER</Nav>
         </div>
         )}
 }
