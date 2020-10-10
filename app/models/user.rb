@@ -41,8 +41,12 @@ class User < ApplicationRecord
 
     
 
-    has_many :active_cleanings
-    has_many :accounts, through: :active_cleanings, source: :account
+    has_many :active_cleanings,
+    class_name: 'ActiveCleaning',
+    foreign_key: :user_id,
+    primary_key: :id
+
+    has_many :accounts, through: :active_cleanings, source: :user
 
 
     def generate_session_token

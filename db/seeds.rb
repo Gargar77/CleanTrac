@@ -1,4 +1,5 @@
 require 'faker'
+require'byebug'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -16,13 +17,13 @@ User.delete_all
 Company.delete_all
 
 #seed config----
-COMPANY_NUM = 20
+COMPANY_NUM = 5
 LEADER_NUM = 25
 CLEANER_NUM = 35
 UPLOADS_NUM = 35
 ACCOUNTS_NUM = 30
 POSTS_NUM = 40
-COMMENTS_NUM = 40
+COMMENTS_NUM = 85
 LIKES_NUM = 40
 #---------------
 
@@ -58,9 +59,23 @@ LIKES_NUM = 40
     employees = User.all.select { |user| user.role != 'owner'}
     companies = Company.all.map { |account| account}
     ACCOUNTS_NUM.times do
-        account = accounts[rand(ACCOUNTS_NUM)]
-        employee = employees[rand(CLEANER_NUM + LEADER_NUM)] 
-        ActiveCleaning.create(account_id: account.id, user_id: employee.id)
+        # account = accounts[rand(ACCOUNTS_NUM)]
+        # employee = employees[rand(CLEANER_NUM + LEADER_NUM)] 
+        # ActiveCleaning.create(account_id: account.id, user_id: employee.id)
+
+        company = companies.pop
+        break if company == nil
+        current_company_employees = User.where("company_id = #{company.id}").map { |e| e}
+        account_set = Account.where("company_id = #{company.id}").map { |e| e}
+        # debugger
+        until current_company_employees.length == 0
+            employee = current_company_employees.pop
+            num = account_set.length - 2
+            idx = rand(num)
+            account = account_set[idx]
+            next if !account || !employee
+            ActiveCleaning.create(account_id: account.id, user_id: employee.id)
+        end
     end
 
 
