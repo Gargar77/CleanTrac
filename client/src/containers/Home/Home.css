@@ -2,7 +2,7 @@
     height: 100vh;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 10% 80% 10%;
+    grid-template-rows: 10% 84% 6%;
 }
 
 .nav-items {
@@ -10,17 +10,26 @@
 }
 
 
-.message a, .camera a {
+.message a, .camera a, .gear a, .home a {
     display: inline-block;
     height: 100%;
 }
 
-.message svg{
+.message svg, .gear svg, .home svg{
     height: inherit;
 }
 
 .camera svg {
     height: 90%;
     padding-top: 7px;
+}
+
+.gear {
+    fill: #727270;
+    padding-right: 10px;
+}
+
+.home {
+    padding-left: 10px;
 }
 
