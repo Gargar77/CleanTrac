@@ -5,3 +5,7 @@ export {
     authCheckState,
     logOut
 } from './auth'
+
+export {
+   fetchAccountsData 
+} from './accounts'
