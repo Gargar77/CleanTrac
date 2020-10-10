@@ -50,5 +50,21 @@ FactoryBot.define do
         cleaning_timeframe_start { Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :afternoon) }
         cleaning_timeframe_end { Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :evening) }
     end
+
+    factory :post do
+        author_id {nil}
+        account_id {nil}
+        title {Faker::Games::Zelda.game }
+        content { Faker::ChuckNorris.fact }
+    end
+
+    factory :comment do 
+        author_id {nil}
+        post_id {nil}
+        content { Faker::Quotes::Shakespeare.hamlet_quote }
+
+    end
+
+
 end
 
