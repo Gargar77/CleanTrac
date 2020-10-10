@@ -61,15 +61,6 @@ LIKES_NUM = 40
         account = accounts[rand(ACCOUNTS_NUM)]
         employee = employees[rand(CLEANER_NUM + LEADER_NUM)] 
         ActiveCleaning.create(account_id: account.id, user_id: employee.id)
-
-        # company = companies.pop
-        # current_company_employees = User.where("company_id = #{company.id}").map { |e| e}
-        # account_set = Account.where("company_id = #{company.id}")
-        # until current_company_employees.length <= 0
-        #     employee = current_company_employees.pop
-        #     account = account_set[rand(account_set.length - 1)]
-        #     ActiveCleaning.create(account_id: account.id, user_id: employee.id)
-        # end
     end
 
 
