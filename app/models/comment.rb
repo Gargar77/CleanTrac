@@ -21,4 +21,17 @@ class Comment < ApplicationRecord
     class_name: 'Post',
     foreign_key: :post_id,
     primary_key: :id
+
+    def num_likes
+        count = Comment.count_by_sql "
+        SELECT COUNT(*) 
+        FROM comments
+        JOIN 
+            likes ON comments.id = likes.comment_id
+        GROUP BY comments.id
+        HAVING comments.id = #{self.id}
+        "
+        return count
+    end
+
 end

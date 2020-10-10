@@ -21,4 +21,5 @@ class Post < ApplicationRecord
     class_name: "Comment",
     foreign_key: :author_id,
     primary_key: :id
+
 end
