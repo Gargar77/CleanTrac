@@ -21,21 +21,23 @@ export const accountFail = (error) => {
 }
 
 
-export const fetchAccountsData = (authToken,dispatch) => {
+export const fetchAccountsData = (authToken) => {
+    return dispatch => {
+        dispatch(accountStart);
 
-    dispatch(accountStart);
-
-    fetch('http://localhost:3001/api/accounts',{
-        method:'GET',
-        headers: {
-            'Accept': 'application/json',
-            'content-type':'application/json',
-            'Authorization' : 'Bearer ' + authToken
-        }
-    })
-        .then(res => res.json())
-            .then(jsonRes => {
-                dispatch(accountSuccess(jsonRes))
-            })
-        .catch(err => dispatch(accountFail(err)))
+        fetch('http://localhost:3001/api/accounts',{
+            method:'GET',
+            headers: {
+                'Accept': 'application/json',
+                'content-type':'application/json',
+                'Authorization' : 'Bearer ' + authToken
+            }
+        })
+            .then(res => res.json())
+                .then(jsonRes => {
+                    dispatch(accountSuccess(jsonRes))
+                })
+            .catch(err => dispatch(accountFail(err)))
+    }
+   
 }
