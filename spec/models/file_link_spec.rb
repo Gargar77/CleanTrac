@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: file_links
+#
+#  id          :bigint           not null, primary key
+#  uploader_id :integer          not null
+#  account_id  :integer          not null
+#  link        :text             not null
+#
 require 'rails_helper'
 
 RSpec.describe FileLink, type: :model do

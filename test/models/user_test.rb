@@ -13,6 +13,7 @@
 #  first_name      :string           not null
 #  last_name       :string           not null
 #  leader_id       :integer
+#  phone           :string
 #
 require 'test_helper'
 

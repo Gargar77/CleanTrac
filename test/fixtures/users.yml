@@ -13,6 +13,7 @@
 #  first_name      :string           not null
 #  last_name       :string           not null
 #  leader_id       :integer
+#  phone           :string
 #
 
 # This model initially had no columns defined. If you add columns to the

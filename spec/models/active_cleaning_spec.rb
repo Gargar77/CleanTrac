@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: active_cleanings
+#
+#  id         :bigint           not null, primary key
+#  account_id :integer          not null
+#  user_id    :integer          not null
+#
 require 'rails_helper'
 
 RSpec.describe ActiveCleaning, type: :model do
