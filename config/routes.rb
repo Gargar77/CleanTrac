@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   scope '/api', defaults: {format: :json} do
     get '/user', to: 'users#show'
+    get '/accounts', to: 'accounts#show'
   end
 
   scope '/auth' do

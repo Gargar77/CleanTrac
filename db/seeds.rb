@@ -17,12 +17,12 @@ User.delete_all
 Company.delete_all
 
 #seed config----
-COMPANY_NUM = 5
+COMPANY_NUM = 4
 LEADER_NUM = 25
 CLEANER_NUM = 35
 UPLOADS_NUM = 35
-ACCOUNTS_NUM = 30
-POSTS_NUM = 40
+ACCOUNTS_NUM = 10
+POSTS_NUM = 70
 COMMENTS_NUM = 85
 LIKES_NUM = 40
 #---------------

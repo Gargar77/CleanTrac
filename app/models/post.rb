@@ -17,9 +17,14 @@ class Post < ApplicationRecord
     class_name: 'User',
     foreign_key: :author_id
 
+    belongs_to :account,
+    class_name: 'Account',
+    foreign_key: :account_id,
+    primary_key: :id
+
     has_many :comments,
     class_name: "Comment",
-    foreign_key: :author_id,
+    foreign_key: :post_id,
     primary_key: :id
 
 end

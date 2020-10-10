@@ -29,6 +29,11 @@ class Account < ApplicationRecord
     foreign_key: :company_id,
     primary_key: :id
 
+    has_many :posts,
+    class_name: 'Post',
+    foreign_key: :account_id,
+    primary_key: :id
+
     has_many :active_cleanings
 
     has_many :cleaners,through: :active_cleanings, source: :user
