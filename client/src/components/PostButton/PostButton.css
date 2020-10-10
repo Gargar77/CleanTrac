@@ -1,0 +1,27 @@
+.post-button {
+    border: 6px solid transparent;
+    height: 60px;
+    width: 60px;
+    top: -30px;
+    position: relative;
+    margin: 0 auto;
+    /* top: -20px; */
+    /* left: 50%; */
+    border-radius: 50px;
+    background-clip: padding-box;
+    color: #FFF;
+    padding: 10px;
+    background-color: white;
+}
+
+.post-button:before {
+    content:'';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    margin: -6px;
+    border-radius: inherit;
+    background: linear-gradient(var(--pure-blue),var(--light-blue));
+    transform: translateZ(20deg);
+}
+
