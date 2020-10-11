@@ -8,22 +8,24 @@ export const accountStart = () => {
 
 export const accountSuccess = (accountsData) => {
     return {
-        type: actionTypes.AUTH_SUCCESS,
+        type: actionTypes.GET_ACCOUNTS_SUCCESS,
         data:accountsData
     }
 }
 
 export const accountFail = (error) => {
     return {
-        type:actionTypes.AUTH_FAIL,
+        type:actionTypes.GET_ACCOUNTS_FAIL,
         error: error.message
     }
 }
 
 
+
+
 export const fetchAccountsData = (authToken) => {
     return dispatch => {
-        dispatch(accountStart);
+        dispatch(accountStart());
 
         fetch('http://localhost:3001/api/accounts',{
             method:'GET',
@@ -41,3 +43,7 @@ export const fetchAccountsData = (authToken) => {
     }
    
 }
+
+
+
+

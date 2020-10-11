@@ -11,7 +11,7 @@ import {ReactComponent as MessageSVG} from '../../assets/message.svg';
 import {ReactComponent as CameraSVG} from '../../assets/camera.svg';
 import {ReactComponent as GearSVG} from '../../assets/gear.svg';
 import {ReactComponent as HomeSVG} from '../../assets/home.svg';
-import PostsViewer from '../PostsViewer/PostsViewer';
+import AccountsViewer from '../AccountsViewer/AccountsViewer';
 
 
 class Home extends Component {
@@ -27,7 +27,7 @@ class Home extends Component {
                 
             </Nav>
         <div>
-            <PostsViewer/>
+            <AccountsViewer/>
         </div>
             <Nav footer>
                 <NavItem klass="home" link="/home"><HomeSVG/></NavItem>

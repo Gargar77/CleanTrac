@@ -1,5 +1,5 @@
 
-json.account_info do
+
     json.array!(@accounts) do |account|
         json.company_id account.id
         json.account_name account.name
@@ -15,19 +15,24 @@ json.account_info do
         json.sunday_cleaning account.sunday_cleaning
         json.cleaning_timeframe_start account.cleaning_timeframe_start
         json.cleaning_timeframe_end account.cleaning_timeframe_end
-    end
-end
 
-json.posts do
-    json.array!(@accounts.posts) do |post|
-        json.title post.title
-        json.content post.content
-        json.author post.author.first_name
-        json.array!(post.comments) do |comment|
-            json.author comment.author
-            json.content comment.content
-            json.likes comment.num_likes
+        json.posts do 
+            json.array!(account.posts) do |post|
+                    json.title post.title
+                    json.content post.content
+                    json.author post.author.first_name
+                    
+                    json.comments do
+                        json.array!(post.comments) do |comment|
+                            puts comment
+                            json.author comment.author.first_name
+                            json.content comment.content
+                            json.likes comment.num_likes
+                            
+                        end
+                    end
+            end
         end
     end
 
-end
+

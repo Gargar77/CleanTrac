@@ -21,7 +21,7 @@ class App extends Component {
 
     let loader = null;
     if (this.props.loading) {
-      loader = <LoadScreen/>
+      loader = <LoadScreen>loading user...</LoadScreen>
     }
 
     let content = (

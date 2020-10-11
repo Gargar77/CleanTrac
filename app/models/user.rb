@@ -46,7 +46,7 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     primary_key: :id
 
-    has_many :accounts, through: :active_cleanings, source: :user
+    has_many :accounts, through: :active_cleanings
 
 
     def generate_session_token

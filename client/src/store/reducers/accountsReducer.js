@@ -1,4 +1,3 @@
-import { accountFail } from '../actions/accounts';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
