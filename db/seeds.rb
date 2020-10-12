@@ -18,10 +18,10 @@ Company.delete_all
 
 #seed config----
 COMPANY_NUM = 4
-LEADER_NUM = 25
-CLEANER_NUM = 35
+LEADER_NUM = 8
+CLEANER_NUM = 16
 UPLOADS_NUM = 35
-ACCOUNTS_NUM = 10
+ACCOUNTS_NUM = 20
 POSTS_NUM = 70
 COMMENTS_NUM = 85
 LIKES_NUM = 40
@@ -63,7 +63,7 @@ LIKES_NUM = 40
         # employee = employees[rand(CLEANER_NUM + LEADER_NUM)] 
         # ActiveCleaning.create(account_id: account.id, user_id: employee.id)
 
-        company = companies.pop
+        company = companies[rand(companies.length)]
         break if company == nil
         current_company_employees = User.where("company_id = #{company.id}").map { |e| e}
         account_set = Account.where("company_id = #{company.id}").map { |e| e}
