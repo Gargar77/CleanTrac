@@ -9,7 +9,7 @@ class Account extends Component {
 getPosts = () => {
     const posts = this.props.accountData.posts
 
-    return posts.map((post,index)=> <Post key={"post" + index} data={post}/>);
+    return posts.map((post,index)=> <Post key={"post" + index} id={"post" + index} data={post}/>);
     
 }
 
@@ -17,8 +17,8 @@ getPosts = () => {
 
         let posts = this.getPosts();
         return(
-            <div>
-                <h1>{this.props.accountData.account_name}</h1>
+            <div className="account-container">
+                <h1>all from {this.props.accountData.account_name}</h1>
                 {posts}
             </div>
 

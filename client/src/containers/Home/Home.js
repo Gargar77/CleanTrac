@@ -26,7 +26,7 @@ class Home extends Component {
                 </div>
                 
             </Nav>
-        <div>
+        <div className="accounts-container">
             <AccountsViewer/>
         </div>
             <Nav footer>

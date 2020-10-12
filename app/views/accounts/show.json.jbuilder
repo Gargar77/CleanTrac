@@ -20,12 +20,15 @@
             json.array!(account.posts) do |post|
                     json.title post.title
                     json.content post.content
-                    json.author post.author.first_name
+                    json.author_fname post.author.first_name
+                    json.author_lname post.author.last_name
+                    json.created post.creation_days_ago
                     
                     json.comments do
                         json.array!(post.comments) do |comment|
                             puts comment
-                            json.author comment.author.first_name
+                            json.author_fname comment.author.first_name
+                            json.author_lname comment.author.last_name
                             json.content comment.content
                             json.likes comment.num_likes
                             

@@ -1,0 +1,48 @@
+.post-container {
+    background-color: white;
+    margin: 12px 0;
+    color: rgb(90, 90, 90);
+    /* padding:16px; */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.post-user {
+    margin-bottom: 80px;
+}
+.post-user h1, .post-user h3 {
+    text-align: left;
+    position: absolute;
+    left: 80px;
+    padding-top: 10px;
+}
+
+.post-user h3 {
+    padding-top: 30px;
+    font-size: 8px;
+    color: darkgray;
+}
+
+.post-user .profile-image {
+    height: 45px;
+}
+
+.post-content h2 {
+    text-align: left;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.post-content p {
+    padding:16px;
+}
+
+.post-upload-container {
+    padding-bottom: 12px;
+}
+
+
+
+

@@ -12,6 +12,11 @@ const profile = props => {
             <BackgroundSVG className="profile-background" />
         );
     }
+  
+
+    const getrandImage = () => {
+        return `https://loremflickr.com/200/200?${props.id}`
+    }
 
     return(
         <div 
@@ -19,7 +24,8 @@ const profile = props => {
             >
              <img 
                 className="profile-image" 
-                src="https://randomuser.me/api/portraits/men/4.jpg"
+                // src="https://randomuser.me/api/portraits/men/4.jpg"
+                src={getrandImage()}
                 />
                 {background}
         </div>

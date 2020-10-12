@@ -15,12 +15,12 @@ componentDidMount() {
     }
 }
 
-getPosts = () => {
+getAccounts = () => {
     let accounts = [...this.props.accounts]
-    let posts = accounts.map((account,index)=> {
+    let accountList = accounts.map((account,index)=> {
        return <Account key={index} accountData={account}/>
     })
-    return posts;
+    return accountList;
 }
 
     render() {
@@ -29,7 +29,7 @@ getPosts = () => {
         let loadingText;
         console.log(this.props.accounts)
         if (this.props.accounts) {
-            content = this.getPosts();
+            content = this.getAccounts();
         } else {
             content = <div className="accounts-spinner"><Spinner/></div>
             loadingText = <p className="loading-text">loading accounts...</p>

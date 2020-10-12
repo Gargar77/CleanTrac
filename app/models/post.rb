@@ -27,4 +27,8 @@ class Post < ApplicationRecord
     foreign_key: :post_id,
     primary_key: :id
 
+    def creation_days_ago
+       return Date.today - self.created_at.to_date
+    end
+
 end

@@ -5,6 +5,10 @@
     grid-template-rows: 10% 84% 6%;
 }
 
+.accounts-container {
+    overflow: scroll;
+}
+
 .nav-items {
     display: flex;
 }
