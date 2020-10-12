@@ -37,7 +37,7 @@ const post = props => {
                 <div className="post-upload-container">
                     <img
                         src={randomUpload()}
-                        alt={`image upload by ${post.author_fname}`}
+                        alt=""
                     />
                 </div>
             </div>

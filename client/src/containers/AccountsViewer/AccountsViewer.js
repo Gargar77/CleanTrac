@@ -27,7 +27,6 @@ getAccounts = () => {
 
         let content;
         let loadingText;
-        console.log(this.props.accounts)
         if (this.props.accounts) {
             content = this.getAccounts();
         } else {

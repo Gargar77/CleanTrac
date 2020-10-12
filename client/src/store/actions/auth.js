@@ -51,7 +51,6 @@ export const fetchUserData = (authToken,dispatch) => {
     })
     .then((res)=> res.json())
     .then((jsonRes) => {
-        console.log(jsonRes)
         saveSessionToLocal(authToken)
         dispatch(authSuccess(authToken))
         dispatch(logInUser(jsonRes.user))
@@ -139,7 +138,6 @@ export const seAuthRedirectPath = (path) => {
 
 
 export const authCheckState = () => {
-    console.log('checking localstorage')
     return dispatch => {
         dispatch(authStart());
         const token = localStorage.getItem('token');
@@ -148,7 +146,6 @@ export const authCheckState = () => {
         } else {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
             if (expirationDate >= new Date()) {
-                console.log('localStorage TOKEN:',token)
                 fetchUserData(token,dispatch);
                 dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
 

@@ -26,6 +26,7 @@ const profile = props => {
                 className="profile-image" 
                 // src="https://randomuser.me/api/portraits/men/4.jpg"
                 src={getrandImage()}
+                alt="placeholder user"
                 />
                 {background}
         </div>

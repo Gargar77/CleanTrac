@@ -101,7 +101,7 @@ class signUpForm extends Component {
                    ],
                    name: 'user[role]'
                 },
-            value: 'owner',
+            value: 'cleaner',
             validation: {
                 required: false
             },
@@ -138,7 +138,6 @@ class signUpForm extends Component {
         const updatedFormElement = {
             ...updatedOrderForm[inputIndex]
         }
-        let currentRole = this.state.currentRole;
      
 
         updatedFormElement.value = event.target.value;
