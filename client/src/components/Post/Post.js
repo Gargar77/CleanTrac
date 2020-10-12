@@ -6,9 +6,8 @@ import Profile from '../Profile/Profile';
 const post = props => {
 
     const randomUpload = () => {
-        let roulette = [1,2,3,4,5,6,7,8,9,10];
         let randIdx = Math.round(Math.random(10));
-        if (randIdx % 2 == 0) {
+        if (randIdx % 2 === 0) {
             return `https://loremflickr.com/400/200?${randIdx + Math.random(100)}`
         } else {
             return ""
@@ -38,6 +37,7 @@ const post = props => {
                 <div className="post-upload-container">
                     <img
                         src={randomUpload()}
+                        alt={`image upload by ${post.author_fname}`}
                     />
                 </div>
             </div>
