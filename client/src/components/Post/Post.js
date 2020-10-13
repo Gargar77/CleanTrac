@@ -83,7 +83,7 @@ class Post extends Component {
                     </div>
                 </div>
                 <div className="post-status">
-                    <LikeStatus/>
+                    <LikeStatus likes={post.likes}/>
                 <p 
                     className="comment-toggle" 
                     onClick={()=> this.commentToggleHandler()}
