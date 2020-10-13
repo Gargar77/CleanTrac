@@ -62,6 +62,13 @@ class Post extends Component {
         })
     }
 
+    likeToggleHandler = () => {
+        this.setState({
+            ...this.state,
+            liked: !this.state.liked
+        })
+    }
+
 
     render() {
         const post = this.props.data;
@@ -83,7 +90,7 @@ class Post extends Component {
                     </div>
                 </div>
                 <div className="post-status">
-                    <LikeStatus likes={post.likes}/>
+                    <LikeStatus liked={this.state.liked} likes={post.likes}/>
                 <p 
                     className="comment-toggle" 
                     onClick={()=> this.commentToggleHandler()}
@@ -91,7 +98,7 @@ class Post extends Component {
                     >{this.getCommentNum()}</p>
                 </div>
                 <hr style={{width:'90%'}} />
-                <PostActions postData={{...post}}/>
+                <PostActions liked={this.state.liked} postData={{...post}} likeClicked={this.likeToggleHandler}/>
                 <CommentsView active={this.state.commentsToggled} post={post.author_fname} comments={[...post.comments]}/>
             </div>
         );
