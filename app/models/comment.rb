@@ -22,6 +22,8 @@ class Comment < ApplicationRecord
     foreign_key: :post_id,
     primary_key: :id
 
+    has_many :likes, as: :likeable
+
     def num_likes
         count = Comment.count_by_sql "
         SELECT COUNT(*) 

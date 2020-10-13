@@ -24,7 +24,7 @@ UPLOADS_NUM = 35
 ACCOUNTS_NUM = 20
 POSTS_NUM = 70
 COMMENTS_NUM = 85
-LIKES_NUM = 40
+LIKES_NUM = 300
 #---------------
 
 
@@ -104,10 +104,20 @@ LIKES_NUM = 40
 
     #random likes
     comments = Comment.all
+    type = ['Post','Comment']
+    count = 0
     LIKES_NUM.times do
+        index = count % 2
         liker = employees[rand(CLEANER_NUM + LEADER_NUM)]
-        comment = comments[rand(COMMENTS_NUM)]
-        Like.create( user_id:liker.id, comment_id:comment.id )
+        type_id = nil
+        if index == 0
+            type_id = posts[rand(POSTS_NUM)]
+        else
+            type_id = comments[rand(COMMENTS_NUM)]
+        end
+        
+        Like.create( likeable_id:type_id.id, likeable_type:type[index], user_id:liker.id )
+        count += 1
     end
 
 
