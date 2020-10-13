@@ -91,7 +91,8 @@ LIKES_NUM = 300
     POSTS_NUM.times do
         uploader = employees[rand(CLEANER_NUM + LEADER_NUM)]
         account = accounts[rand(ACCOUNTS_NUM)] 
-        FactoryBot.create(:post,author_id: uploader.id,account_id: account.id)
+        randDate = DateTime.now.days_ago(rand(30))
+        post = FactoryBot.create(:post,author_id: uploader.id,account_id: account.id,created_at:randDate)
     end
 
     #random comments on posts
