@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
 
     def show
         @accounts = current_user.accounts
+        @user = current_user
         # debugger
         render :show
     end

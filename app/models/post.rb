@@ -33,4 +33,11 @@ class Post < ApplicationRecord
        return Date.today - self.created_at.to_date
     end
 
+    def user_liked(id)
+        user_id = id
+        likes = self.likes.where('likes.user_id = ?',user_id)
+
+        return !likes.empty?
+    end
+
 end

@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(user_create_params)
-      print(@user)
       if @user.save
         render json: "#{@user.first_name} created!", status: :created 
       else

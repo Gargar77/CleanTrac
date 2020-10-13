@@ -9,3 +9,7 @@ export {
 export {
    fetchAccountsData 
 } from './accounts'
+
+export {
+    newLike
+} from './likes'

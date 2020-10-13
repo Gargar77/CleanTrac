@@ -18,6 +18,7 @@
 
         json.posts do 
             json.array!(account.posts) do |post|
+                    json.id post.id
                     json.title post.title
                     json.content post.content
                     json.author_fname post.author.first_name
@@ -25,7 +26,7 @@
                     json.created post.creation_days_ago
                     json.comment_num post.comments.size
                     json.likes post.likes.size
-                    
+                    json.userLiked post.user_liked(@user.id)
                     json.comments do
                         json.array!(post.comments) do |comment|
                             puts comment

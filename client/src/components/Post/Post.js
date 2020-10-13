@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Post.css';
+import {connect} from 'react-redux';
 
 import Profile from '../Profile/Profile';
 import LikeStatus from '../UI/LikeStatus/LikeStatus';
@@ -8,15 +9,16 @@ import CommentsView from '../CommentsView/CommentsView';
 class Post extends Component {
 
     state = {
-        postId:null,
-        userId:null,
         liked:false,
         commentsToggled:false,
-        upload: null
+        upload: null,
+        likeRequestPending:false,
+        likeButtonTouched:false
     }
 
-    componentDidMount() {
+    
 
+    componentDidMount() {
         if (!this.state.upload) {
             const upload = this.randomUpload();
             this.setState({
@@ -25,6 +27,8 @@ class Post extends Component {
             })
         }
     }
+
+   
 
     randomUpload = () => {
         let randIdx = Math.round(Math.random(10));
@@ -65,11 +69,56 @@ class Post extends Component {
     }
 
     likeToggleHandler = () => {
-        this.setState({
-            ...this.state,
-            liked: !this.state.liked
-        })
+        if (this.state.likeRequestPending) {
+            this.setState({
+                ...this.state,
+                liked: !this.state.liked
+            })
+        } else {
+            this.setState({
+                ...this.state,
+                liked: !this.state.liked,
+                likeRequestPending:true,
+                likeButtonTouched:true
+            })
+
+            setTimeout(() => {
+    
+                const token = this.props.token
+                const postId = this.props.data.id
+
+                this.newLike(token,postId,'Post')
+            }, 5000);
+        }
+        
     }
+
+    newLike = (authToken,likeableId,type) => {
+            const data = {
+                like: {
+                
+                    likeable_id:likeableId,
+                    likeable_type:type
+                }
+            }
+            fetch('http://localhost:3001/api/likes', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type':'application/json',
+                    'Authorization' : 'Bearer ' + authToken
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => {
+                    this.setState({
+                        ...this.state,
+                        likeRequestPending:false
+                    })
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        }
 
 
     render() {
@@ -100,11 +149,22 @@ class Post extends Component {
                     >{this.getCommentNum()}</p>
                 </div>
                 <hr style={{width:'90%'}} />
-                <PostActions liked={this.state.liked} postData={{...post}} likeClicked={this.likeToggleHandler}/>
+                <PostActions liked={this.state.likeButtonTouched ? this.state.liked : this.props.data.userLiked} postData={{...post}} likeClicked={this.likeToggleHandler}/>
                 <CommentsView active={this.state.commentsToggled} post={post.author_fname} comments={[...post.comments]}/>
             </div>
         );
     }
 }
 
-export default Post;
+
+const mapStateToProps = state => {
+    return {
+        userId: state.user.userId,
+        token: state.auth.token,
+
+    }
+}
+
+
+
+export default connect(mapStateToProps)(Post);
