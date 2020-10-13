@@ -16,7 +16,7 @@ const likeStatus = props => {
     return(
         <div className="like-status-container">
             <ThumbStatusSVG/>
-    <p className="like-status-counter">{props.likes + userLike() || "10"}</p>
+    <p className="like-status-counter">{props.likes + userLike()}</p>
         </div>
 
     );

@@ -1,6 +1,7 @@
 .comment-container {
     display: flex;
     padding-left: 12px;
+    position: relative;
     
 }
 
@@ -29,4 +30,12 @@
 
 .comment-container .profile-image {
     height: 45px;
+}
+
+.comment__like-toggle {
+    text-align: left;
+    position: absolute;
+    bottom: 34px;
+    left: 140px;
+    text-decoration: underline;
 }

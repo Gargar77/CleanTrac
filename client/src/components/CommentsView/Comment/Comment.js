@@ -10,12 +10,26 @@ class Comment extends Component {
         liked:false
     }
 
-    
+    commentLikeHandler = () => {
+        this.setState({
+            ...this.state,
+            liked: !this.state.liked
+        })
+    }
 
     render() {
+        let likebutton = null;
+
+        if(!this.state.liked) {
+            likebutton = <span onClick={this.commentLikeHandler} className="comment__like-toggle">like</span>
+        } else {
+            likebutton = <span onClick={this.commentLikeHandler} className="comment__like-toggle">unlike</span>
+
+        }
         const comment = this.props.comment;
         return(
             <div className="comment-container">
+                {likebutton}
                 <div className="comment__user">
                 <Profile/>
                 </div>
@@ -24,7 +38,6 @@ class Comment extends Component {
                     <p className="comment__body">{comment.content}</p>
                     <LikeStatus liked={this.state.liked} likes={comment.likes}/>
                 </div>
-                
             </div>
         
         );
