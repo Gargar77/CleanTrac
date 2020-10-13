@@ -39,8 +39,10 @@ class Post extends Component {
        let day =  Math.round(parseInt(this.props.data.created))
        if (day <= 0) {
            return 'now'
+       } else if(day === 1) {
+           return 'yesterday'
        } else {
-           return `${day} days`
+        return `${day} days`
        }
     }
 
