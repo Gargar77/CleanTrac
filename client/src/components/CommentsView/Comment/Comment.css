@@ -1,0 +1,32 @@
+.comment-container {
+    display: flex;
+    padding-left: 12px;
+    
+}
+
+.comment__content {
+    background: whitesmoke;
+    padding: 12px;
+    margin: 16px;
+    margin-left: 40px;
+    border-radius: 12px;
+    border-top-left-radius: 0px;
+}
+
+.comment__content p {
+    text-align: left;
+    padding-left: 12px;
+}
+
+.comment__author {
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+
+.comment__body {
+    padding-bottom: 12px;
+}
+
+.comment-container .profile-image {
+    height: 45px;
+}

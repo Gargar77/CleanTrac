@@ -23,6 +23,7 @@
                     json.author_fname post.author.first_name
                     json.author_lname post.author.last_name
                     json.created post.creation_days_ago
+                    json.comment_num post.comments.length
                     
                     json.comments do
                         json.array!(post.comments) do |comment|

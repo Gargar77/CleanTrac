@@ -47,6 +47,17 @@
     width: 100%;
 }
 
+.post-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+/* .comment-toggle:hover {
+    text-decoration: underline;
+    cursor: pointer;
+} */
+
 
 
 

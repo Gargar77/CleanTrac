@@ -1,0 +1,17 @@
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+    font-size: 10px;
+}
+
+.post-actions svg {
+    height: 20px;
+    width: 20px;
+}
+
+.post-action__like, .post-action__comment, .post-action__share {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

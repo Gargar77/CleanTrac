@@ -1,0 +1,12 @@
+.like-status-container {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.like-status-container svg {
+    height: 25px;
+    margin-left: -5px;
+    position: relative;
+    top: -2.5px;
+}

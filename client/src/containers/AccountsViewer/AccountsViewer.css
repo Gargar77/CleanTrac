@@ -1,9 +1,8 @@
 .posts-viewer-container {
     background-color: whitesmoke;
     position: relative;
-    z-index: -5;
+    height: 100%;
 }
-
 .accounts-spinner {
     width: fit-content;
     position: absolute;
