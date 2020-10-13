@@ -9,17 +9,20 @@ import {ReactComponent as ThumbUpColorSVG} from '../../assets/thumb_up_large.svg
 
 const postActions = props => {
     let thumbUp;
+    let likeText;
     if (props.liked) {
         thumbUp = <ThumbUpColorSVG/>
+        likeText = <span className="post-action__unlike-text">unlike</span>
     } else {
         thumbUp = <ThumbUpSmallSVG/>
+        likeText = <span className="post-action__like-text">like</span>
     }
 
     return(
         <div className="post-actions">
             <div onClick={props.likeClicked}className="post-action__like">
                 {thumbUp}
-                <span>like</span>
+                {likeText}
             </div>
             <div className="post-action__comment">
                 <CommentSVG/>

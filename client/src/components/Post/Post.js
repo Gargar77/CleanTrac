@@ -6,14 +6,15 @@ import Profile from '../Profile/Profile';
 import LikeStatus from '../UI/LikeStatus/LikeStatus';
 import PostActions from '../PostActions/PostActions';
 import CommentsView from '../CommentsView/CommentsView';
+
+
 class Post extends Component {
 
     state = {
         liked:false,
         commentsToggled:false,
         upload: null,
-        likeRequestPending:false,
-        likeButtonTouched:false
+        likeRequestPending:false
     }
 
     
@@ -24,6 +25,14 @@ class Post extends Component {
             this.setState({
                 ...this.state,
                 upload:upload
+            })
+        }
+
+        if (this.props.data.userLiked !== this.state.liked) {
+            const liked = this.props.data.userLiked
+            this.setState({
+                ...this.state,
+                    liked: liked
             })
         }
     }
@@ -83,12 +92,15 @@ class Post extends Component {
             })
 
             setTimeout(() => {
-    
-                const token = this.props.token
-                const postId = this.props.data.id
-
-                this.newLike(token,postId,'Post')
-            }, 5000);
+                const liked = this.state.liked;
+                const token = this.props.token;
+                const postId = this.props.data.id;
+                if (liked) {
+                    this.newLike(token,postId,'Post')
+                } else {
+                    this.deleteLike(token,postId,'Post')
+                }
+            }, 1000);
         }
         
     }
@@ -121,6 +133,35 @@ class Post extends Component {
         }
 
 
+        deleteLike = (authToken,likeableId,type) => {
+            const data = {
+                like: {
+                    likeable_id:likeableId,
+                    likeable_type:type
+                }
+            }
+            fetch('http://localhost:3001/api/likes', {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type':'application/json',
+                    'Authorization' : 'Bearer ' + authToken
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => {
+                    this.setState({
+                        ...this.state,
+                        likeRequestPending:false
+                    })
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        }
+
+        
+
+
     render() {
         const post = this.props.data;
         return (
@@ -149,7 +190,7 @@ class Post extends Component {
                     >{this.getCommentNum()}</p>
                 </div>
                 <hr style={{width:'90%'}} />
-                <PostActions liked={this.state.likeButtonTouched ? this.state.liked : this.props.data.userLiked} postData={{...post}} likeClicked={this.likeToggleHandler}/>
+                <PostActions liked={this.state.liked} postData={{...post}} likeClicked={this.likeToggleHandler}/>
                 <CommentsView active={this.state.commentsToggled} post={post.author_fname} comments={[...post.comments]}/>
             </div>
         );

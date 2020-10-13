@@ -24,16 +24,10 @@ class Comment < ApplicationRecord
 
     has_many :likes, as: :likeable
 
-    def num_likes
-        count = Comment.count_by_sql "
-        SELECT COUNT(*) 
-        FROM comments
-        JOIN 
-            likes ON comments.id = likes.comment_id
-        GROUP BY comments.id
-        HAVING comments.id = #{self.id}
-        "
-        return count
-    end
+    def user_liked(id)
+        user_id = id
+        likes = self.likes.where('likes.user_id = ?',user_id)
 
+        return !likes.empty?
+    end
 end

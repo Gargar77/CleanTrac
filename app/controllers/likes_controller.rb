@@ -14,11 +14,21 @@ class LikesController < ApplicationController
     end
 
     def delete
-
+        @like = Like.find_by(likeable_id: params[:like][:likeable_id],likeable_type: params[:like][:likeable_type])
+        if @like.nil?
+            render json: "no like found"
+        else
+            @like.delete
+            render json: "deleted like!"
+        end
     end
 
 
     def like_create_params
+        params.require(:like).permit(:likeable_id,:likeable_type)
+    end
+
+    def like_delete_params
         params.require(:like).permit(:likeable_id,:likeable_type)
     end
 

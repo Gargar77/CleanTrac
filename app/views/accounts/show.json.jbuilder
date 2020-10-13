@@ -29,11 +29,12 @@
                     json.userLiked post.user_liked(@user.id)
                     json.comments do
                         json.array!(post.comments) do |comment|
-                            puts comment
+                            json.id comment.id
                             json.author_fname comment.author.first_name
                             json.author_lname comment.author.last_name
                             json.content comment.content
                             json.likes comment.likes.size
+                            json.userLiked comment.user_liked(@user.id)
                             
                         end
                     end

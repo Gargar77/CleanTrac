@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/user', to: 'users#show'
     get '/accounts', to: 'accounts#show'
     post '/likes', to: 'likes#create'
+    delete '/likes', to: 'likes#delete'
   end
 
   scope '/auth' do

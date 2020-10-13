@@ -16,7 +16,7 @@ class commentsView extends Component {
     getComments = () => {
         let comments = this.props.comments
         return comments.map((comment,idx)=> {
-            return <Comment comment={comment} id={"comment" + this.props.post + idx} key={"comment" + this.props.post + idx}/>
+            return <Comment data={comment} id={"comment" + this.props.post + idx} key={"comment" + this.props.post + idx}/>
         })  
     }
 
