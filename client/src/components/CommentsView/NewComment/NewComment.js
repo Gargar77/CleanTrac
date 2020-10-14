@@ -10,7 +10,7 @@ class NewComment extends Component {
     state = {
         controls: {
             comment: {
-                elementType: 'input',
+                elementType: 'textarea',
                 elementConfig: {
                     type: 'textarea',
                     placeholder: 'Enter comment',
@@ -98,8 +98,8 @@ class NewComment extends Component {
         }
 
         return(
-            <div className="comment-container">
-                <form onSubmit={this.formSubmitHandler}>
+            <div id="#new-comment" className="comment-container">
+                <form className="form"onSubmit={this.formSubmitHandler}>
                     {formElementsArr.map( formEl => (
                             <Input 
                                 key={formEl.id}

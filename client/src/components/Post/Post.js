@@ -16,7 +16,8 @@ class Post extends Component {
         upload: null,
         likeRequestPending:false,
         addingComment:false,
-        comments:[]
+        recentComments:[],
+        persistedComments:[]
     }
 
     
@@ -37,18 +38,28 @@ class Post extends Component {
                     liked: liked
             })
         }
+        let comments = [...this.props.data.comments];
+
+        this.setState({
+            persistedComments:comments
+        })
     }
 
     removePostedComment = (id) => {
-        let comments = [...this.state.comments];
-        
-        comments = comments.filter((comment)=> {
+        let recentComments = [...this.state.recentComments];
+        let persistedComments = [...this.state.persistedComments]
+        recentComments = recentComments.filter((comment)=> {
+            return comment.id !== id
+        })
+
+        persistedComments = persistedComments.filter((comment) => {
             return comment.id !== id
         })
 
         this.setState({
             ...this.state,
-            comments: comments
+            recentComments: recentComments,
+            persistedComments: persistedComments
         })
     }
 
@@ -182,7 +193,7 @@ class Post extends Component {
         }
 
         renderNewComment = (comment,id) => {
-            let comments = [...this.state.comments]
+            let comments = [...this.state.recentComments]
             const newComment = {
                     id:id,
                     author_fname:this.props.user.firstName,
@@ -196,12 +207,13 @@ class Post extends Component {
 
             this.setState({
                 ...this.state,
-                comments: comments
+                recentComments: comments
             })
         }
 
 
     render() {
+       
         const post = this.props.data;
         return (
             <div className="post-container">
@@ -229,15 +241,21 @@ class Post extends Component {
                     >{this.getCommentNum()}</p>
                 </div>
                 <hr style={{width:'90%'}} />
-                <PostActions liked={this.state.liked} postData={{...post}} likeClicked={()=> this.likeToggleHandler()} commentClicked={this.newCommentHandler}/>
+                <PostActions 
+                    liked={this.state.liked} 
+                    postData={{...post}} 
+                    likeClicked={()=> this.likeToggleHandler()} 
+                    commentClicked={this.newCommentHandler}
+                    addingComment={this.state.addingComment}/>
                 <CommentsView 
                     active={this.state.commentsToggled} 
                     post={post} 
-                    extra={this.state.comments} 
-                    comments={[...post.comments]}
+                    extra={this.state.recentComments} 
+                    comments={[...this.state.persistedComments]}
                     removeComment={this.removePostedComment} 
                     newComment={this.state.addingComment} 
-                    addComment={this.renderNewComment}/>
+                    addComment={this.renderNewComment}
+                    />
             </div>
         );
     }

@@ -5,17 +5,26 @@ import {ReactComponent as ThumbUpSmallSVG} from '../../assets/thumb_up_small.svg
 import {ReactComponent as CommentSVG} from '../../assets/comment.svg';
 import {ReactComponent as ShareSVG} from '../../assets/share.svg';
 import {ReactComponent as ThumbUpColorSVG} from '../../assets/thumb_up_large.svg';
+import commentsView from '../CommentsView/CommentsView';
 
 
 const postActions = props => {
     let thumbUp;
     let likeText;
+    let commentText;
     if (props.liked) {
         thumbUp = <ThumbUpColorSVG/>
         likeText = <span className="post-action__unlike-text">unlike</span>
     } else {
         thumbUp = <ThumbUpSmallSVG/>
         likeText = <span className="post-action__like-text">like</span>
+    }
+
+    if (props.addingComment) {
+        commentText = <span>hide</span>
+
+    } else {
+        commentText = <span>comment</span>
     }
 
     return(
@@ -26,7 +35,7 @@ const postActions = props => {
             </div>
             <div onClick={props.commentClicked} className="post-action__comment">
                 <CommentSVG/>
-                <span>comment</span>
+                {commentText}
             </div>
             <div className="post-action__share">
                 <ShareSVG/>

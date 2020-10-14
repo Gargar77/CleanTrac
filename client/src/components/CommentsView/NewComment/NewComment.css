@@ -2,3 +2,15 @@
     height: 30px;
     width: fit-content;
 }
+
+.comment-container form {
+    position: relative;
+    height: fit-content;
+    width: 100%;
+}
+
+.comment-container textarea {
+    width: 90%;
+    height: 80px;
+    border-radius: 10px;
+}
