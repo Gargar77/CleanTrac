@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     delete '/likes', to: 'likes#delete'
     post '/comments', to: 'comments#create'
     delete '/comments', to: 'comments#delete'
+    post '/posts', to: 'posts#create'
+    delete '/posts', to: 'posts#delete'
   end
 
   scope '/auth' do
