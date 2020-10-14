@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get '/accounts', to: 'accounts#show'
     post '/likes', to: 'likes#create'
     delete '/likes', to: 'likes#delete'
+    post '/comments', to: 'comments#create'
+    delete '/comments', to: 'comments#delete'
   end
 
   scope '/auth' do

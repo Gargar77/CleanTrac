@@ -20,11 +20,11 @@ const postActions = props => {
 
     return(
         <div className="post-actions">
-            <div onClick={props.likeClicked}className="post-action__like">
+            <div onClick={props.likeClicked} className="post-action__like">
                 {thumbUp}
                 {likeText}
             </div>
-            <div className="post-action__comment">
+            <div onClick={props.commentClicked} className="post-action__comment">
                 <CommentSVG/>
                 <span>comment</span>
             </div>

@@ -14,7 +14,9 @@ class Post extends Component {
         liked:false,
         commentsToggled:false,
         upload: null,
-        likeRequestPending:false
+        likeRequestPending:false,
+        addingComment:false,
+        comments:[]
     }
 
     
@@ -159,7 +161,31 @@ class Post extends Component {
                 .catch(err => console.log(err))
         }
 
-        
+        newCommentHandler = () =>  {
+            this.setState({
+                ...this.state,
+                addingComment: !this.state.addingComment
+            })
+        }
+
+        renderNewComment = (comment,id) => {
+            let comments = [...this.state.comments]
+            const newComment = {
+                    id:id,
+                    author_fname:this.props.user.firstName,
+                    author_lname: this.props.user.lastName,
+                    content: comment,
+                    likes:0,
+                    userLiked:false
+            }
+
+            comments.push(newComment);
+
+            this.setState({
+                ...this.state,
+                comments: comments
+            })
+        }
 
 
     render() {
@@ -190,8 +216,14 @@ class Post extends Component {
                     >{this.getCommentNum()}</p>
                 </div>
                 <hr style={{width:'90%'}} />
-                <PostActions liked={this.state.liked} postData={{...post}} likeClicked={this.likeToggleHandler}/>
-                <CommentsView active={this.state.commentsToggled} post={post.author_fname} comments={[...post.comments]}/>
+                <PostActions liked={this.state.liked} postData={{...post}} likeClicked={()=> this.likeToggleHandler()} commentClicked={this.newCommentHandler}/>
+                <CommentsView 
+                    active={this.state.commentsToggled} 
+                    post={post} 
+                    extra={this.state.comments} 
+                    comments={[...post.comments]} 
+                    newComment={this.state.addingComment} 
+                    addComment={this.renderNewComment}/>
             </div>
         );
     }
@@ -202,7 +234,7 @@ const mapStateToProps = state => {
     return {
         userId: state.user.userId,
         token: state.auth.token,
-
+        user:state.user
     }
 }
 

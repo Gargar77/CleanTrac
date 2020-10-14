@@ -5,7 +5,6 @@ class LikesController < ApplicationController
     def create
         @like = Like.new(like_create_params)
         @like.user_id = current_user.id
-        puts @like.user_id
         if @like.save
             render json: "Success!"
         else
