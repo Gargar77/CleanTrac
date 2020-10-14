@@ -19,7 +19,7 @@ class commentsView extends Component {
             return <Comment data={comment} id={"comment" + this.props.post.author_fname + idx} key={"comment" + this.props.post.author_fname + idx}/>
         })
         let extraComments = this.props.extra.map((comment,idx)=> {
-            return <Comment data={comment} id={comment.id} key={comment.id}/>
+            return <Comment userPost removeComment={this.props.removeComment}data={comment} id={comment.id} key={comment.id}/>
         })
         commentList.push(extraComments);
 

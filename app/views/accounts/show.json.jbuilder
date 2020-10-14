@@ -30,6 +30,7 @@
                     json.comments do
                         json.array!(post.comments) do |comment|
                             json.id comment.id
+                            json.authorId comment.author.id
                             json.author_fname comment.author.first_name
                             json.author_lname comment.author.last_name
                             json.content comment.content

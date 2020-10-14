@@ -17,12 +17,14 @@ class CommentsController < ApplicationController
         if @comment.nil?
             render json: "no comment deleted"
         else
-            render json: "comment deleted!"
+            @comment.delete
+            render json: @comment.id
         end
     end
 
     def comment_create_params
         params.require(:comment).permit(:post_id,:content)
     end
+    
 
 end

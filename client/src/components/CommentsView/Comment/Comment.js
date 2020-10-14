@@ -112,6 +112,22 @@ class Comment extends Component {
                 .catch(err => console.log(err))
         }
 
+        commentDeleteHandler = () => {
+            const authToken = this.props.token;
+
+            fetch('http://localhost:3001/api/comments', {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type':'application/json',
+                    'Authorization' : 'Bearer ' + authToken
+                },
+                body: JSON.stringify({id: this.props.data.id})
+            })
+            .then(res => res.json())
+            .then(id => this.props.removeComment(id));
+        }
+
     render() {
         let likebutton = null;
 
@@ -122,6 +138,10 @@ class Comment extends Component {
 
         }
         const comment = this.props.data;
+        let deleteButton;
+        if ((this.props.data.authorId === this.props.userId) || this.props.userPost) {
+            deleteButton = <span onClick={this.commentDeleteHandler} className="delete" >delete</span>
+        }
         return(
             <div className="comment-container">
                 {likebutton}
@@ -132,6 +152,7 @@ class Comment extends Component {
                     <p className="comment__author">{comment.author_fname}</p>
                     <p className="comment__body">{comment.content}</p>
                     <LikeStatus liked={this.state.liked} likes={comment.likes}/>
+                    {deleteButton}
                 </div>
             </div>
         

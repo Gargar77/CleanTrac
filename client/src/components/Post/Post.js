@@ -39,6 +39,19 @@ class Post extends Component {
         }
     }
 
+    removePostedComment = (id) => {
+        let comments = [...this.state.comments];
+        
+        comments = comments.filter((comment)=> {
+            return comment.id !== id
+        })
+
+        this.setState({
+            ...this.state,
+            comments: comments
+        })
+    }
+
    
 
     randomUpload = () => {
@@ -221,7 +234,8 @@ class Post extends Component {
                     active={this.state.commentsToggled} 
                     post={post} 
                     extra={this.state.comments} 
-                    comments={[...post.comments]} 
+                    comments={[...post.comments]}
+                    removeComment={this.removePostedComment} 
                     newComment={this.state.addingComment} 
                     addComment={this.renderNewComment}/>
             </div>
