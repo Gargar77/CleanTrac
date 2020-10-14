@@ -3,9 +3,8 @@ import './PostActions.css';
 
 import {ReactComponent as ThumbUpSmallSVG} from '../../assets/thumb_up_small.svg';
 import {ReactComponent as CommentSVG} from '../../assets/comment.svg';
-import {ReactComponent as ShareSVG} from '../../assets/share.svg';
+// import {ReactComponent as ShareSVG} from '../../assets/share.svg';
 import {ReactComponent as ThumbUpColorSVG} from '../../assets/thumb_up_large.svg';
-import commentsView from '../CommentsView/CommentsView';
 
 
 const postActions = props => {
@@ -37,10 +36,10 @@ const postActions = props => {
                 <CommentSVG/>
                 {commentText}
             </div>
-            <div className="post-action__share">
+            {/* <div className="post-action__share">
                 <ShareSVG/>
                 <span>share</span>
-            </div>
+            </div> */}
         </div>
     );
 }
