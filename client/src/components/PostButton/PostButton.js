@@ -5,9 +5,9 @@ import NavItem from '../Navigation/NavigationItem/NavigationItem';
 
 const postButton = props => {
     return (
-        <div className='post-button'>
+        <div  onClick={props.toggle} className='post-button'>
             <Cross/>
-            <NavItem klass="button" link="/post"/>
+            {/* <NavItem klass="button" link="/post"/> */}
         </div>
     );
 }

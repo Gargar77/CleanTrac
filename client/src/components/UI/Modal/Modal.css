@@ -1,0 +1,32 @@
+.modal {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    height: fit-content;
+    width: 70%;
+    background-color: whitesmoke;
+    z-index: 10;
+    border-radius: 20px;
+    transition: all 300ms ease-out;
+}
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.3;
+    z-index: 9;
+    transition: opacity ease 300ms;
+}
+
+.md-inactive {
+    top: -50%;
+}
+
+.bd-inactive {
+    opacity: 0;
+    left: -500px;
+}

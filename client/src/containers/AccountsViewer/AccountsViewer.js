@@ -9,19 +9,29 @@ import Account from '../../components/Account/Account';
 
 class PostsViewer extends Component {
 
-componentDidMount() {
-    if(this.props.isAuthenticated) {
-        this.props.onGetAccounts(this.props.token)
+    componentDidMount() {
+        if(this.props.isAuthenticated) {
+            this.props.onGetAccounts(this.props.token)
+        }
     }
-}
 
-getAccounts = () => {
-    let accounts = [...this.props.accounts]
-    let accountList = accounts.map((account,index)=> {
-       return <Account key={index} accountData={account}/>
-    })
-    return accountList;
-}
+    getAccounts = () => {
+        let accounts = [...this.props.accounts]
+        let accountList = accounts.map((account,index)=> {
+        return <Account key={index} accountData={account}/>
+        })
+        let dataForNewPosts = {
+            posts:this.props.extra,
+            account_name:"New"
+        }
+        
+        let newPosts = (
+            <Account userPosts accountData={dataForNewPosts}/>
+        )
+
+        accountList.unshift(newPosts);
+        return accountList;
+    }
 
     render() {
 

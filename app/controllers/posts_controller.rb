@@ -1,8 +1,9 @@
+
 class PostsController < ApplicationController
     before_action :authenticate_user
 
     def create
-        @Post = Post.new(post_create_params)
+        @post = Post.new(post_create_params)
         @post.author_id = current_user.id
 
         if @post.save

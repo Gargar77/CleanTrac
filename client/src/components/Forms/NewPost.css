@@ -1,0 +1,8 @@
+.new-post-form {
+    padding:20% 10%;
+}
+
+
+.new-post-form textarea {
+    height: 80px;
+}

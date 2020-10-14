@@ -13,11 +13,15 @@ const accountStart = (state,action) => {
 }
 
 const accountSuccess = (state,action) => {
+    let accountSummary = action.data.map((el,idx)=> {
+        return {id:el.company_id,name:el.account_name}
+    })
     return {
         ...state,
         errors:null,
         fetching:false,
-        entities:action.data
+        entities:action.data,
+        accountSummary:accountSummary
     }
 }
 

@@ -39,5 +39,4 @@ class Post < ApplicationRecord
 
         return !likes.empty?
     end
-
 end

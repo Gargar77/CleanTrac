@@ -25,17 +25,24 @@ const input = (props) => {
              break;
         case('select'):
             inputEl = (
-                <select
-                    onChange={props.changed}
-                    className={inputClasses.join(' ')}  
-                    name={props.elementConfig.name}
-                    value={props.value}>
-                    {props.elementConfig.options.map(option => (
-                        <option value={option.value} key={option.value}>
-                            {option.displayValue}
-                        </option>
-                    ))}
-                </select>
+                <div>
+                    <label>{props.elementConfig.name}</label>
+                    <select
+                        onChange={props.changed}
+                        className={inputClasses.join(' ')}  
+                        name={props.elementConfig.name}
+                        value={props.value}>
+                        {props.elementConfig.options ? props.elementConfig.options.map(option => (
+                            <option value={option.value} key={option.value}>
+                                {option.displayValue}
+                            </option>
+                        )) : props.options.map(option => (
+                            <option value={option.value} key={option.value}>
+                                {option.displayValue}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             );
             break;
         default:

@@ -14,11 +14,20 @@ getPosts = () => {
 }
 
     render() {
-
+        let title;
+        if (this.props.userPosts) {
+            title = <h1>New</h1>
+        } else {
+            title = <h1>all from {this.props.accountData.account_name}</h1>
+        }
         let posts = this.getPosts();
+        if (posts.length === 0) {
+            title = null;
+        }
+
         return(
             <div className="account-container">
-                <h1>all from {this.props.accountData.account_name}</h1>
+                {title}
                 {posts}
             </div>
 

@@ -11,7 +11,7 @@
 }
 
 
-.input {
+.input,.textarea {
     outline: none;
     border: 1px solid #ccc;
     background-color: white;
@@ -22,7 +22,7 @@
     border-radius: 10px;    
 }
 
-.input:focus {
+.input:focus, .textarea:focus {
     outline: none;
     background-color: #c0ffe8;
     box-shadow: inset 0px 0px 4px 0px #0ce8d6;
