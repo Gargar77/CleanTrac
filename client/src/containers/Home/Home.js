@@ -13,15 +13,17 @@ import {ReactComponent as HomeSVG} from '../../assets/home.svg';
 import AccountsViewer from '../AccountsViewer/AccountsViewer';
 import Modal from '../../components/UI/Modal/Modal';
 import NewPostForm from '../../components/Forms/NewPost';
-
+import NewPostsAccount from '../../components/Account/Account';
 class Home extends Component {
 
     state ={
         modalOn:false,
         newPost:false,
         settings:false,
-        newPosts:[]
+        recentPosts:[]
     }
+    
+
 
     toggleModalHandler = () => {
         this.setState({
@@ -58,7 +60,7 @@ class Home extends Component {
     }
 
     renderNewPost = (postId,title,content) => {
-        const newPosts = [...this.state.newPosts];
+        const newPosts = [...this.state.recentPosts];
         let post = {
             id:postId,
             title:title,
@@ -73,31 +75,51 @@ class Home extends Component {
         }
 
         newPosts.unshift(post);
-
         this.setState({
             ...this.state,
-            newPosts: newPosts
+            recentPosts:newPosts
         })
 
         this.toggleModalHandler()
     }
+
+    removeRenderedPost = (id) => {
+        let posts = [...this.state.recentPosts];
+
+        posts = posts.filter((post) => {
+            return post.id !== id
+        })
+
+        this.setState({
+            ...this.state,
+            recentPosts:posts
+        })
+    }
+
+    
+
 
     render() {
         let form = null
         if (this.state.newPost) {
             form = <NewPostForm createPost={this.createPost} accountSummary={this.props.accounts.accountSummary}/>
         }
+
+        let posts = [...this.state.recentPosts];
+
+        
         return (
             <div className="home-container">
                 <Nav bcolor='whitesmoke'>
-                    <Profile header/>
+                    <Profile header id={this.props.user.userId}/>
                     <div className="nav-items">
                     <NavItem klass="message" link="/messages"><MessageSVG/></NavItem>
                     <NavItem klass="camera" link="/camera"><CameraSVG/></NavItem>
                     </div>     
                 </Nav>
             <div className="accounts-container">
-                <AccountsViewer extra={this.state.newPosts}/>
+                <NewPostsAccount userPosts accountData={posts} removeRenderedPost={this.removeRenderedPost}/>
+                <AccountsViewer removeRenderedPost={this.removeRenderedPost} ></AccountsViewer>
                 <Modal active={this.state.modalOn} toggle={this.toggleModalHandler}>
                     {form}
                 </Modal>

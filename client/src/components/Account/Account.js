@@ -6,12 +6,44 @@ import Post from '../Post/Post';
 
 
 class Account extends Component {
-getPosts = () => {
-    const posts = this.props.accountData.posts
+    state = {
+        posts:[]
+    }
 
-    return posts.map((post,index)=> <Post key={"post" + index} id={"post" + index} data={post}/>);
+    componentDidMount() {   
+        let posts;
+        if (this.props.userPosts) {
+            posts = this.props.accountData
+        } else {
+            posts = this.props.accountData.posts
+        }
+        
+        this.setState({
+            posts:posts
+        })
+    }
     
-}
+    getPosts = () => {
+        const posts = this.state.posts;
+        if (this.props.userPosts) {
+            return this.props.accountData.map((post,index)=> <Post userPost removePost={this.removePost} tempRemove={this.props.removeRenderedPost} key={"post" + index} id={"post" + index} data={post}/>);
+        } else {
+            return posts.map((post,index)=> <Post removePost={this.removePost} tempRemove={this.props.removeRenderedPost} key={"post" + index} id={"post" + index} data={post}/>);
+        }
+
+        
+    }
+
+    removePost = (id) => {
+
+        let posts = [...this.state.posts];
+
+        posts = posts.filter((post) => {
+            return post.id !== id
+        })
+
+        this.setState({posts:posts})
+    }
 
     render() {
         let title;

@@ -7,7 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Account from '../../components/Account/Account';
 
 
-class PostsViewer extends Component {
+class AccountsViewer extends Component {
 
     componentDidMount() {
         if(this.props.isAuthenticated) {
@@ -15,21 +15,19 @@ class PostsViewer extends Component {
         }
     }
 
+    
+
+
     getAccounts = () => {
         let accounts = [...this.props.accounts]
         let accountList = accounts.map((account,index)=> {
-        return <Account key={index} accountData={account}/>
+        return <Account key={index} accountData={account} removeRenderedPost={this.props.removeRenderedPost}/>
         })
-        let dataForNewPosts = {
-            posts:this.props.extra,
-            account_name:"New"
-        }
-        
-        let newPosts = (
-            <Account userPosts accountData={dataForNewPosts}/>
-        )
+        // let newPosts = (
+        //     <Account userPosts removepost={this.removePost} accountData={this.state.extra}/>
+        // )
 
-        accountList.unshift(newPosts);
+        // accountList.unshift(newPosts);
         return accountList;
     }
 
@@ -46,6 +44,7 @@ class PostsViewer extends Component {
 
         return(
             <div className="posts-viewer-container">
+                {this.props.children}
                 {content}
                 {loadingText}
             </div>
@@ -69,4 +68,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(PostsViewer);
+export default connect(mapStateToProps,mapDispatchToProps)(AccountsViewer);

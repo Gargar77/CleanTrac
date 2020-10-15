@@ -21,6 +21,7 @@
         json.posts do 
             json.array!(account.posts) do |post|
                     json.id post.id
+                    json.authorId post.author_id
                     json.title post.title
                     json.content post.content
                     json.author_fname post.author.first_name

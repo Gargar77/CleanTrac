@@ -47,7 +47,7 @@ class Post extends Component {
 
     removePostedComment = (id) => {
         let recentComments = [...this.state.recentComments];
-        let persistedComments = [...this.state.persistedComments]
+        let persistedComments = [...this.state.persistedComments];
         recentComments = recentComments.filter((comment)=> {
             return comment.id !== id
         })
@@ -211,16 +211,43 @@ class Post extends Component {
             })
         }
 
+        deletePostHandler = () => {
+            const authToken = this.props.token;
+
+            fetch('http://localhost:3001/api/posts', {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-type':'application/json',
+                    'Authorization' : 'Bearer ' + authToken
+                },
+                body: JSON.stringify({id: this.props.data.id})
+            })
+            .then(res => res.json())
+            .then(id => {
+                this.props.removePost(id)
+                if (this.props.userPost) {
+                    this.props.tempRemove(id)
+                }
+                this.props.tempRemove(id)
+            })
+        }
+
 
     render() {
        
         const post = this.props.data;
+        let deleteButton;
+        if ((this.props.data.authorId === this.props.userId) || this.props.userPost) {
+            deleteButton = <span onClick={this.deletePostHandler} className="post-delete">delete</span>
+        }
         return (
             <div className="post-container">
                 <div className="post-user">
                     <Profile id={this.props.id}/>
                     <h1>{post.author_fname + " " + post.author_lname}</h1>
                     <h3>{this.getDaysAgo()}</h3>
+                    {deleteButton}
                 </div>
                 <div className="post-content">
                     <h2>{post.title}</h2>

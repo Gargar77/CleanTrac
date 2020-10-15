@@ -13,13 +13,6 @@ class Comment extends Component {
         likeRequestPending:false
         }
 
-    // commentLikeHandler = () => {
-    //     this.setState({
-    //         ...this.state,
-    //         liked: !this.state.liked
-    //     })
-    // }
-
     componentDidMount() {
         if (this.props.data.userLiked !== this.state.liked) {
             const liked = this.props.data.userLiked

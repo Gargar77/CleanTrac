@@ -10,6 +10,7 @@
 
 .post-user {
     margin-bottom: 80px;
+    position: relative;
 }
 .post-user h1, .post-user h3 {
     text-align: left;
@@ -53,10 +54,15 @@
     padding: 0 10px;
 }
 
-/* .comment-toggle:hover {
+.post-delete {
+    position: absolute;
+    top: 7px;
+    right: 22px;
+}
+
+.post-delete:hover,.post-delete:active {
     text-decoration: underline;
-    cursor: pointer;
-} */
+}
 
 
 

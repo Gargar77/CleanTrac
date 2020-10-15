@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     end
 
     def delete
-        @post = post.find(params[:id])
+        @post = Post.find(params[:id])
 
         if @post.nil?
             render json: "no post deleted"
