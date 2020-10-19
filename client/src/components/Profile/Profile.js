@@ -21,6 +21,7 @@ const profile = props => {
     return(
         <div 
             className="profile-image-container"
+            onClick={props.clicked}
             >
              <img 
                 className="profile-image" 

@@ -15,6 +15,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import NewPostForm from '../../components/Forms/NewPost';
 import NewPostsAccount from '../../components/Account/Account';
 import Settings from '../Settings/Settings';
+import UserProfile from '../UserProfile/UserProfile';
 
 class Home extends Component {
 
@@ -27,6 +28,8 @@ class Home extends Component {
         modalOn:false,
         newPost:false,
         verify:false,
+        userInfo:false,
+        settings:false,
         recentPosts:[]
     }
     
@@ -40,7 +43,9 @@ class Home extends Component {
                     ...this.state,
                     modalOn:true,
                     newPost:false,
-                    verify:true
+                    verify:true,
+                    userInfo:false,
+                    settings:false
                 })
                 break;
             case "post":
@@ -48,7 +53,9 @@ class Home extends Component {
                     ...this.state,
                     modalOn: !this.state.modalOn,
                     newPost:true,
-                    verify:false
+                    verify:false,
+                    userInfo:false,
+                    settings:false
                 })
                 break;
             case "setting":
@@ -56,13 +63,27 @@ class Home extends Component {
                     ...this.state,
                     modalOn: !this.state.modalOn,
                     newPost:false,
-                    verify:false
+                    verify:false,
+                    userInfo:false,
+                    settings:true
                 })
                 break;
+            case "user":
+                this.setState({
+                    ...this.state,
+                    modalOn: !this.state.modalOn,
+                    newPost:false,
+                    verify:false,
+                    userInfo:true,
+                    settings:false
+                })
             default:
                 this.setState({
                     ...this.state,
-                    modalOn: !this.state.modalOn
+                    modalOn: !this.state.modalOn,
+                    newPost:false,
+                    verify:false,
+                    userInfo:true
                 })
         }   
        
@@ -132,6 +153,8 @@ class Home extends Component {
         })
     }
 
+
+
     
 
 
@@ -141,9 +164,11 @@ class Home extends Component {
             form = <NewPostForm createPost={this.createPost} accountSummary={this.props.accounts.accountSummary}/>
         } else if(this.state.verify) {
             form = null
-        } else {
+        } else if(this.state.userInfo){
+            form = <UserProfile/>
+        }   else {
             form = <Settings/>
-        }   
+        }
 
         let posts = [...this.state.recentPosts];
 
@@ -151,7 +176,7 @@ class Home extends Component {
         return (
             <div className="home-container">
                 <Nav bcolor='whitesmoke'>
-                    <Profile header id={this.props.user.userId}/>
+                    <Profile header id={this.props.user.userId} clicked={()=> this.toggleModalHandler("user")}/>
                     <div className="nav-items">
                     <p>{`welcome,\n${this.props.user.firstName}`}</p>
                     {/* <NavItem klass="message" link="/messages"><MessageSVG/></NavItem> */}
