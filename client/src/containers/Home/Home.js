@@ -14,6 +14,8 @@ import AccountsViewer from '../AccountsViewer/AccountsViewer';
 import Modal from '../../components/UI/Modal/Modal';
 import NewPostForm from '../../components/Forms/NewPost';
 import NewPostsAccount from '../../components/Account/Account';
+import Settings from '../Settings/Settings';
+
 class Home extends Component {
 
     constructor(props) {
@@ -138,10 +140,10 @@ class Home extends Component {
         if (this.state.newPost) {
             form = <NewPostForm createPost={this.createPost} accountSummary={this.props.accounts.accountSummary}/>
         } else if(this.state.verify) {
-            form = <h1>are you sure?</h1>
+            form = null
         } else {
-            form = <h1>settings</h1>
-        }
+            form = <Settings/>
+        }   
 
         let posts = [...this.state.recentPosts];
 
