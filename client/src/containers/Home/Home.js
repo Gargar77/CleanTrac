@@ -6,8 +6,8 @@ import Nav from '../../components/UI/Nav/Nav';
 import Profile from '../../components/Profile/Profile';
 import PostButton from '../../components/PostButton/PostButton';
 import NavItem from '../../components/Navigation/NavigationItem/NavigationItem';
-import {ReactComponent as MessageSVG} from '../../assets/message.svg';
-import {ReactComponent as CameraSVG} from '../../assets/camera.svg';
+// import {ReactComponent as MessageSVG} from '../../assets/message.svg';
+// import {ReactComponent as CameraSVG} from '../../assets/camera.svg';
 import {ReactComponent as GearSVG} from '../../assets/gear.svg';
 import {ReactComponent as HomeSVG} from '../../assets/home.svg';
 import AccountsViewer from '../AccountsViewer/AccountsViewer';
@@ -16,22 +16,42 @@ import NewPostForm from '../../components/Forms/NewPost';
 import NewPostsAccount from '../../components/Account/Account';
 class Home extends Component {
 
+    constructor(props) {
+        super(props)
+        this.accountsRef = React.createRef();
+    }
+
     state ={
         modalOn:false,
         newPost:false,
-        settings:false,
         recentPosts:[]
     }
     
 
 
-    toggleModalHandler = () => {
-        this.setState({
-            ...this.state,
-            modalOn: !this.state.modalOn,
-            newPost:true,
-            settings:false
-        })
+    toggleModalHandler = (type) => {
+        switch(type) {
+            case "post":
+                this.setState({
+                    ...this.state,
+                    modalOn: !this.state.modalOn,
+                    newPost:true
+                })
+                break;
+            case "setting":
+                this.setState({
+                    ...this.state,
+                    modalOn: !this.state.modalOn,
+                    newPost:false
+                })
+                break;
+            default:
+                this.setState({
+                    ...this.state,
+                    modalOn: !this.state.modalOn
+                })
+        }   
+       
     }
 
     createPost = (accountId,title,content) => {
@@ -81,6 +101,8 @@ class Home extends Component {
         })
 
         this.toggleModalHandler()
+        this.accountsRef.current.scroll(0,0);
+        
     }
 
     removeRenderedPost = (id) => {
@@ -103,6 +125,8 @@ class Home extends Component {
         let form = null
         if (this.state.newPost) {
             form = <NewPostForm createPost={this.createPost} accountSummary={this.props.accounts.accountSummary}/>
+        } else {
+            form = <h1>settings</h1>
         }
 
         let posts = [...this.state.recentPosts];
@@ -113,11 +137,12 @@ class Home extends Component {
                 <Nav bcolor='whitesmoke'>
                     <Profile header id={this.props.user.userId}/>
                     <div className="nav-items">
-                    <NavItem klass="message" link="/messages"><MessageSVG/></NavItem>
-                    <NavItem klass="camera" link="/camera"><CameraSVG/></NavItem>
+                    <p>{`welcome,\n${this.props.user.firstName}`}</p>
+                    {/* <NavItem klass="message" link="/messages"><MessageSVG/></NavItem> */}
+                    {/* <NavItem klass="camera" link="/camera"><CameraSVG/></NavItem> */}
                     </div>     
                 </Nav>
-            <div className="accounts-container">
+            <div className="accounts-container" ref={this.accountsRef}>
                 <NewPostsAccount userPosts accountData={posts} removeRenderedPost={this.removeRenderedPost}/>
                 <AccountsViewer removeRenderedPost={this.removeRenderedPost} ></AccountsViewer>
                 <Modal active={this.state.modalOn} toggle={this.toggleModalHandler}>
@@ -126,8 +151,9 @@ class Home extends Component {
             </div>
                 <Nav footer>
                     <NavItem klass="home" link="/home"><HomeSVG/></NavItem>
-                    <PostButton toggle={this.toggleModalHandler}/>
-                    <NavItem klass="gear" link="/settings"><GearSVG/></NavItem>
+                    <PostButton toggle={()=> this.toggleModalHandler("post")}/>
+                    {/* <NavItem klass="gear" link="/settings"><GearSVG/></NavItem> */}
+                    <li onClick={()=> this.toggleModalHandler('setting')} className="nav-link gear" ><GearSVG/></li>
                 </Nav>
             </div>
         )}

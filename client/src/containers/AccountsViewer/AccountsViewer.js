@@ -43,7 +43,7 @@ class AccountsViewer extends Component {
         }
 
         return(
-            <div className="posts-viewer-container">
+            <div className="posts-viewer-container" >
                 {this.props.children}
                 {content}
                 {loadingText}
