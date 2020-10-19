@@ -24,6 +24,7 @@ class Home extends Component {
     state ={
         modalOn:false,
         newPost:false,
+        verify:false,
         recentPosts:[]
     }
     
@@ -31,18 +32,29 @@ class Home extends Component {
 
     toggleModalHandler = (type) => {
         switch(type) {
+
+            case "verify":
+                this.setState({
+                    ...this.state,
+                    modalOn:true,
+                    newPost:false,
+                    verify:true
+                })
+                break;
             case "post":
                 this.setState({
                     ...this.state,
                     modalOn: !this.state.modalOn,
-                    newPost:true
+                    newPost:true,
+                    verify:false
                 })
                 break;
             case "setting":
                 this.setState({
                     ...this.state,
                     modalOn: !this.state.modalOn,
-                    newPost:false
+                    newPost:false,
+                    verify:false
                 })
                 break;
             default:
@@ -125,6 +137,8 @@ class Home extends Component {
         let form = null
         if (this.state.newPost) {
             form = <NewPostForm createPost={this.createPost} accountSummary={this.props.accounts.accountSummary}/>
+        } else if(this.state.verify) {
+            form = <h1>are you sure?</h1>
         } else {
             form = <h1>settings</h1>
         }
@@ -144,7 +158,7 @@ class Home extends Component {
                 </Nav>
             <div className="accounts-container" ref={this.accountsRef}>
                 <NewPostsAccount userPosts accountData={posts} removeRenderedPost={this.removeRenderedPost}/>
-                <AccountsViewer removeRenderedPost={this.removeRenderedPost} ></AccountsViewer>
+                <AccountsViewer removeRenderedPost={this.removeRenderedPost} toggle={this.toggleModalHandler}></AccountsViewer>
                 <Modal active={this.state.modalOn} toggle={this.toggleModalHandler}>
                     {form}
                 </Modal>

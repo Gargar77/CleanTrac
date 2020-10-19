@@ -6,6 +6,8 @@ import Profile from '../Profile/Profile';
 import LikeStatus from '../UI/LikeStatus/LikeStatus';
 import PostActions from '../PostActions/PostActions';
 import CommentsView from '../CommentsView/CommentsView';
+import Modal from '../UI/Modal/Modal';
+import Verify from '../VerifySubmission/VerifySubmission';
 
 
 class Post extends Component {
@@ -17,7 +19,8 @@ class Post extends Component {
         likeRequestPending:false,
         addingComment:false,
         recentComments:[],
-        persistedComments:[]
+        persistedComments:[],
+        verify:false
     }
 
     
@@ -212,6 +215,15 @@ class Post extends Component {
         }
 
         deletePostHandler = () => {
+            this.setState({
+                ...this.state,
+                verify:true
+            })
+        }
+
+        deletePost = () => {
+
+            // let confirmation = this.props.modal("verify")
             const authToken = this.props.token;
 
             fetch('http://localhost:3001/api/posts', {
@@ -231,6 +243,29 @@ class Post extends Component {
                 }
                 this.props.tempRemove(id)
             })
+
+            this.setState({
+                ...this.state,
+                verify:false
+            })
+        }
+
+        toggleModalHandler = () => {
+            this.setState({
+                ...this.state,
+                verify:false
+            })
+        }
+
+        verifyDeleteHandler = (result) => {
+            if (result === true) {
+                this.deletePost();
+            } else {
+                this.setState({
+                    ...this.state,
+                    verify:false
+                })
+            }
         }
 
 
@@ -241,8 +276,13 @@ class Post extends Component {
         if ((this.props.data.authorId === this.props.userId) || this.props.userPost) {
             deleteButton = <span onClick={this.deletePostHandler} className="post-delete">delete</span>
         }
+        let modal;
+        if (this.state.verify) {
+            modal = <Modal active toggle={this.toggleModalHandler}><Verify verify={this.verifyDeleteHandler}/></Modal>
+        }
         return (
             <div className="post-container">
+                {modal}
                 <div className="post-user">
                     <Profile id={this.props.id}/>
                     <h1>{post.author_fname + " " + post.author_lname}</h1>

@@ -26,9 +26,9 @@ class Account extends Component {
     getPosts = () => {
         const posts = this.state.posts;
         if (this.props.userPosts) {
-            return this.props.accountData.map((post,index)=> <Post userPost removePost={this.removePost} tempRemove={this.props.removeRenderedPost} key={"post" + index} id={"post" + index} data={post}/>);
+            return this.props.accountData.map((post,index)=> <Post userPost modal={this.props.toggleM} removePost={this.removePost} tempRemove={this.props.removeRenderedPost} key={"post" + index} id={"post" + index} data={post}/>);
         } else {
-            return posts.map((post,index)=> <Post removePost={this.removePost} tempRemove={this.props.removeRenderedPost} key={"post" + index} id={"post" + index} data={post}/>);
+            return posts.map((post,index)=> <Post modal={this.props.toggleM} removePost={this.removePost} tempRemove={this.props.removeRenderedPost} key={"post" + index} id={"post" + index} data={post}/>);
         }
 
         
