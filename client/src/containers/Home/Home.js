@@ -77,6 +77,7 @@ class Home extends Component {
                     userInfo:true,
                     settings:false
                 })
+                break;
             default:
                 this.setState({
                     ...this.state,
@@ -99,7 +100,7 @@ class Home extends Component {
             }
         }
 
-        fetch('http://localhost:3001/api/posts', {
+        fetch('/api/posts/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

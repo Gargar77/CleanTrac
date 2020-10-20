@@ -8,3 +8,11 @@
   left: 35%;
   bottom: 40%;
 }
+
+
+@media screen and (min-width:500px) {
+ .App {
+   background-image:url('../src/assets/sponges.jpg');
+   background-size: contain;
+ }
+}

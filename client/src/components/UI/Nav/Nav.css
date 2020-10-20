@@ -2,7 +2,7 @@
     display: flex;
     align-content: center;
     justify-content: space-between;
-    /* background-color: whitesmoke; */
+    background-color: whitesmoke;
     position: relative;
     z-index: 2;
 }

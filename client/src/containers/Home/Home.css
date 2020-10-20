@@ -3,15 +3,25 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 10% 84% 6%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
 }
+
 
 .accounts-container {
     overflow: scroll;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-color: whitesmoke;
 }
 
 .nav-items {
     display: flex;
+}
+
+.nav .profile-image {
+    cursor: pointer;
 }
 
 

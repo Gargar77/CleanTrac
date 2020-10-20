@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 :root {
   --pure-blue: #0D52FF;
   --dark-blue: #0C85E8;
@@ -70,5 +71,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
 
 

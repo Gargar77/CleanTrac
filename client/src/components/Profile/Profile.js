@@ -24,8 +24,8 @@ const profile = props => {
             onClick={props.clicked}
             >
              <img 
+                crossOrigin="anonymous"
                 className="profile-image" 
-                // src="https://randomuser.me/api/portraits/men/4.jpg"
                 src={getrandImage()}
                 alt="placeholder user"
                 />

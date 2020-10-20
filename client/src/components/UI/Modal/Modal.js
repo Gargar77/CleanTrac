@@ -13,8 +13,8 @@ const modal = props => {
 
     return(
         <Aux>
-            <div onClick={props.toggle} className={"backdrop " + "bd-" + status}></div>
-             <div className={"modal " + "md-" + status}>
+            <div onClick={props.toggle} className={"backdrop bd-" + status}></div>
+             <div className={"modal md-" + status}>
                 {props.children}
             </div>
         </Aux>

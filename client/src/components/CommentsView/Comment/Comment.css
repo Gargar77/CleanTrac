@@ -39,8 +39,10 @@
     bottom: 34px;
     left: 140px;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .delete {
     left: 190px;
+    cursor: pointer;
 }

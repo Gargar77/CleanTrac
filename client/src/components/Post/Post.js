@@ -296,6 +296,7 @@ class Post extends Component {
                         <img
                             src={this.state.upload}
                             alt=""
+                            crossOrigin="anomymous"
                         />
                     </div>
                 </div>

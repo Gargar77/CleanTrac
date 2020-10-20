@@ -1,6 +1,5 @@
 .auth {
     height: 100%;
-    background-color: var(--pure-blue);
     background: linear-gradient(var(--light-blue),var(--pure-blue));
     color:whitesmoke; 
 }
@@ -15,6 +14,7 @@
     text-align: left;
     list-style: none;
     padding: 20px;
+    cursor: pointer;
 }
 
 
@@ -41,11 +41,18 @@
 
 .landing__signin {
     color: var(--pastel-green);
-
+    cursor: pointer;
 }
 
 .sponge .n {
     position: relative;
+}
+
+.auth-error {
+    color: lightcoral;
+    font-weight: 600;
+    filter: drop-shadow(2px 2px 0px gray);
+    padding-top: 16px;
 }
 
 @keyframes moveIn {
@@ -54,5 +61,11 @@
 }
 
 
-@keyframes moveY {}
+@media screen and (min-width:500px) {
+    .landing,.auth {
+        max-width: 500px;
+        margin: 0 auto;
+        box-shadow: 0px 0px 9px -3px black;
+    }
+}
 

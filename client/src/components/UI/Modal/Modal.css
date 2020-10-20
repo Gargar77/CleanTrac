@@ -30,3 +30,20 @@
     opacity: 0;
     left: -500px;
 }
+
+
+@media screen and (min-width:500px) {
+    .bd-inactive {
+        left: -2000px;
+    }
+
+    .backdrop {
+        transition: none
+    }
+
+    .modal {
+        max-width: 500px;
+        left: none;
+    }
+
+}
