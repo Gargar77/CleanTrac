@@ -27,7 +27,7 @@ export const fetchAccountsData = (authToken) => {
     return dispatch => {
         dispatch(accountStart());
 
-        fetch('/api/accounts',{
+        fetch('/api/accounts/',{
             method:'GET',
             headers: {
                 'Accept': 'application/json',
