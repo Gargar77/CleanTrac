@@ -84,7 +84,7 @@ export const saveSessionToLocal = (token) => {
 export const auth = (formData) => {
     return dispatch => {
         dispatch(authStart());
-        let url = 'http://localhost:3001/auth/signin';
+        let url = '/auth/signin';
 
         fetch(url, {
             method:'POST',
@@ -111,7 +111,7 @@ export const signUp = (formData) => {
     return dispatch => {
         dispatch(authStart());
 
-        let url = 'http://localhost:3001/auth/signup';  
+        let url = '/auth/signup';  
         fetch(url, {
             method:'POST',
             body: formData,
