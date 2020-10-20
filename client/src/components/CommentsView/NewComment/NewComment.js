@@ -68,7 +68,7 @@ class NewComment extends Component {
         const comment = this.state.controls.comment.value;
         const authToken = this.props.token
         // send comment to rails
-        fetch('/api/comments', {
+        fetch('/api/comments/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

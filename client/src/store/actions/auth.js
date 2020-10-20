@@ -47,7 +47,7 @@ export const logOut = () => {
 export const fetchUserData = (authToken,dispatch) => {
     // get user data upon receiving a jwt token
 
-    fetch('http://localhost:3001/api/user',{
+    fetch('/api/user/',{
         method:'GET',
         headers: {
             'Accept': 'application/json',
@@ -84,7 +84,7 @@ export const saveSessionToLocal = (token) => {
 export const auth = (formData) => {
     return dispatch => {
         dispatch(authStart());
-        let url = '/auth/signin';
+        let url = '/auth/signin/';
 
         fetch(url, {
             method:'POST',
@@ -111,7 +111,7 @@ export const signUp = (formData) => {
     return dispatch => {
         dispatch(authStart());
 
-        let url = '/auth/signup';  
+        let url = '/auth/signup/';  
         fetch(url, {
             method:'POST',
             body: formData,

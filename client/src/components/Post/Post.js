@@ -142,7 +142,7 @@ class Post extends Component {
                     likeable_type:type
                 }
             }
-            fetch('/api/likes', {
+            fetch('/api/likes/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -169,7 +169,7 @@ class Post extends Component {
                     likeable_type:type
                 }
             }
-            fetch('/api/likes', {
+            fetch('/api/likes/', {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -226,7 +226,7 @@ class Post extends Component {
             // let confirmation = this.props.modal("verify")
             const authToken = this.props.token;
 
-            fetch('/api/posts', {
+            fetch('/api/posts/', {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
