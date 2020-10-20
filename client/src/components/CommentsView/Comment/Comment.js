@@ -59,7 +59,7 @@ class Comment extends Component {
                     likeable_type:type
                 }
             }
-            fetch('http://localhost:3001/api/likes', {
+            fetch('/api/likes', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -86,7 +86,7 @@ class Comment extends Component {
                     likeable_type:type
                 }
             }
-            fetch('http://localhost:3001/api/likes', {
+            fetch('/api/likes', {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -108,7 +108,7 @@ class Comment extends Component {
         commentDeleteHandler = () => {
             const authToken = this.props.token;
 
-            fetch('http://localhost:3001/api/comments', {
+            fetch('/api/comments', {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
