@@ -27,6 +27,8 @@
     font-size: 2.5rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+    position: relative;
+    animation: moveIn 1.2s cubic-bezier(0,.14,.27,.8) forwards;
 }
 
 .landing button {
@@ -41,4 +43,16 @@
     color: var(--pastel-green);
 
 }
+
+.sponge .n {
+    position: relative;
+}
+
+@keyframes moveIn {
+    from{top:-200px;opacity: -1.5;}
+    to{top:0px;opacity: 1;}
+}
+
+
+@keyframes moveY {}
 

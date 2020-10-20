@@ -3,7 +3,8 @@ export {
     fetchUserData,
     signUp,
     authCheckState,
-    logOut
+    logOut,
+    clearErrors
 } from './auth'
 
 export {

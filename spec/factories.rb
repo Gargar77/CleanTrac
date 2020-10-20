@@ -55,14 +55,14 @@ FactoryBot.define do
     factory :post do
         author_id {nil}
         account_id {nil}
-        title {Faker::Games::Zelda.game }
-        content { Faker::ChuckNorris.fact }
+        title {Faker::Game.title }
+        content {Faker::Hipster.sentences[0]}
     end
 
     factory :comment do 
         author_id {nil}
         post_id {nil}
-        content { Faker::Quotes::Shakespeare.hamlet_quote }
+        content { Faker::TvShows::Friends.quote}
 
     end
 

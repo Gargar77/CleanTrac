@@ -1,6 +1,12 @@
 import * as actionTypes from './actionTypes';
 
 
+export const clearErrors = () => {
+    return {
+        type:actionTypes.ERROR_CLEAR
+    };
+}
+
 export const authStart = () => {
     return {
         type:actionTypes.AUTH_START
@@ -79,9 +85,6 @@ export const auth = (formData) => {
     return dispatch => {
         dispatch(authStart());
         let url = 'http://localhost:3001/auth/signin';
-        // if (isSignUp) {
-        //     url = 'http://localhost:3001/auth/signup';
-        // }
 
         fetch(url, {
             method:'POST',
@@ -89,10 +92,11 @@ export const auth = (formData) => {
             redirect: 'manual'
         })
         .then(response => {
+            console.log(response)
             if (response.ok) {
                 return response.json();
             } else {
-                throw Error('Incorrect Email / Password');
+                throw Error(response.statusText);
             }})
             .then((token)=> { 
                 fetchUserData(token.jwt,dispatch);
@@ -114,7 +118,8 @@ export const signUp = (formData) => {
             redirect: 'manual'
         })
         .then(response => {
-           console.log(response.status);
+            console.log(response)
+           if (response.ok) {
                 let email = formData.get('user[email]');
                 console.log(email);
                 let pw = formData.get('user[password]');
@@ -122,8 +127,12 @@ export const signUp = (formData) => {
                 let newForm = new FormData();
                 newForm.append('auth[email]',email);
                 newForm.append('auth[password]',pw);
-               let ds = auth(newForm);
-               ds(dispatch);
+            let ds = auth(newForm);
+            ds(dispatch);
+           } else {
+            throw Error(response.statusText)
+           }
+            
         })
         .catch(err=> dispatch(authFail(err)))
     } 

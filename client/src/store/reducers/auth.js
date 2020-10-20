@@ -40,6 +40,12 @@ const authLogout = (state,action) => {
         loading:false
     }
 }
+const clearError = (state,action) => {
+    return {
+        ...state,
+        error:null
+    }
+}
 
 const reducer = (state = initialState,action) => {
     switch (action.type) {
@@ -47,6 +53,7 @@ const reducer = (state = initialState,action) => {
         case actionTypes.AUTH_SUCCESS: return authSuccess(state,action);
         case actionTypes.AUTH_FAIL: return authFail(state,action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state,action);
+        case actionTypes.ERROR_CLEAR: return clearError(state,action);
         default: return state;
     }
 }

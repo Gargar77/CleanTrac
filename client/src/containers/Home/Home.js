@@ -178,7 +178,7 @@ class Home extends Component {
                 <Nav bcolor='whitesmoke'>
                     <Profile header id={this.props.user.userId} clicked={()=> this.toggleModalHandler("user")}/>
                     <div className="nav-items">
-                    <p>{`welcome,\n${this.props.user.firstName}`}</p>
+                    <p className="welcome-message">{`welcome,\n${this.props.user.firstName}`}</p>
                     {/* <NavItem klass="message" link="/messages"><MessageSVG/></NavItem> */}
                     {/* <NavItem klass="camera" link="/camera"><CameraSVG/></NavItem> */}
                     </div>     

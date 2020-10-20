@@ -21,9 +21,9 @@ COMPANY_NUM = 4
 LEADER_NUM = 8
 CLEANER_NUM = 16
 UPLOADS_NUM = 35
-ACCOUNTS_NUM = 20
-POSTS_NUM = 70
-COMMENTS_NUM = 85
+ACCOUNTS_NUM = 10
+POSTS_NUM = 100
+COMMENTS_NUM = 125
 LIKES_NUM = 300
 #---------------
 
@@ -58,12 +58,14 @@ LIKES_NUM = 300
     accounts = Account.all
     employees = User.all.select { |user| user.role != 'owner'}
     companies = Company.all.map { |account| account}
+    companies_copy = Company.all.map { |account| account}
     ACCOUNTS_NUM.times do
         # account = accounts[rand(ACCOUNTS_NUM)]
         # employee = employees[rand(CLEANER_NUM + LEADER_NUM)] 
         # ActiveCleaning.create(account_id: account.id, user_id: employee.id)
 
-        company = companies[rand(companies.length)]
+        #company = companies[rand(companies.length)]
+        company = companies_copy.pop()
         break if company == nil
         current_company_employees = User.where("company_id = #{company.id}").map { |e| e}
         account_set = Account.where("company_id = #{company.id}").map { |e| e}

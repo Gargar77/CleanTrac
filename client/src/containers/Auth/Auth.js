@@ -46,7 +46,6 @@ class Auth extends Component {
 
     parseUniqueId(idString) {
         let ids = idString.split('_');
-        console.log(ids);
         return ids;
     }
 
@@ -55,10 +54,13 @@ class Auth extends Component {
             isSignIn:true,
             isLanding:false
         })
+        this.props.onClearErrors();
+
     }
 
     startSignUpHandler = () => {
         this.setState({isLanding:false})
+        this.props.onClearErrors();
     }
 
     goBackHandler = () => {
@@ -129,7 +131,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (formData) => dispatch(actions.auth(formData)),
-        onSignUp: (formData) => dispatch(actions.signUp(formData))
+        onSignUp: (formData) => dispatch(actions.signUp(formData)),
+        onClearErrors: () => dispatch(actions.clearErrors())
     }
 }
 

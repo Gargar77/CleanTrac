@@ -24,9 +24,7 @@ const input = (props) => {
                 value={props.value} />;
              break;
         case('select'):
-            inputEl = (
-                <div>
-                    <label>{props.elementConfig.name}</label>
+            inputEl = (  
                     <select
                         onChange={props.changed}
                         className={inputClasses.join(' ')}  
@@ -42,7 +40,6 @@ const input = (props) => {
                             </option>
                         ))}
                     </select>
-                </div>
             );
             break;
         default:
