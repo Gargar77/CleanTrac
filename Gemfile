@@ -40,7 +40,6 @@ group :development, :test do
   gem 'foreman', '~> 0.82.0'
   gem 'annotate'
   gem 'rspec-rails'
-  
 end
 
 group :development do
