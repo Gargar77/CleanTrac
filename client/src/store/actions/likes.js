@@ -42,7 +42,7 @@ export const newLike = (authToken,userId,likeableId,type) => {
     return dispatch => {
         dispatch(createLikeStart());
 
-        fetch('http://localhost:3001/api/likes', {
+        fetch('/api/likes', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
