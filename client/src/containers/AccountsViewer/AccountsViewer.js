@@ -23,11 +23,7 @@ class AccountsViewer extends Component {
         let accountList = accounts.map((account,index)=> {
         return <Account key={index} accountData={account} removeRenderedPost={this.props.removeRenderedPost} toggleM={this.props.toggle}/>
         })
-        // let newPosts = (
-        //     <Account userPosts removepost={this.removePost} accountData={this.state.extra}/>
-        // )
 
-        // accountList.unshift(newPosts);
         return accountList;
     }
 
