@@ -28,7 +28,7 @@ Knock.setup do |config|
   ## Configure the algorithm used to encode the token
   ##
   ## Default:
-   config.token_signature_algorithm = 'HS256'
+   #config.token_signature_algorithm = 'HS256'
 
   ## Signature key
   ## -------------
@@ -36,7 +36,7 @@ Knock.setup do |config|
   ## Configure the key used to sign tokens.
   ##
   ## Default:
-  config.token_secret_signature_key = -> { Rails.application.credentials.secret_key_base.read }
+  config.token_secret_signature_key = -> { Rails.application.credentials.dig(:secret_key_base) }
 
   ## If using Auth0, uncomment the line below
   # config.token_secret_signature_key = -> { JWT.base64url_decode Rails.application.secrets.auth0_client_secret }
