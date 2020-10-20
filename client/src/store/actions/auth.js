@@ -55,7 +55,10 @@ export const fetchUserData = (authToken,dispatch) => {
             'Authorization' : 'Bearer ' + authToken
         }
     })
-    .then((res)=> res.json())
+    .then((res)=>{
+        console.log(res);
+        return res.json();
+    })
     .then((jsonRes) => {
         saveSessionToLocal(authToken)
         dispatch(authSuccess(authToken))
