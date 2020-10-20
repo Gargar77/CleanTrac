@@ -37,6 +37,7 @@ export const fetchAccountsData = (authToken) => {
         })
             .then(res => res.json())
                 .then(jsonRes => {
+                    console.log("[accounts]",jsonres)
                     dispatch(accountSuccess(jsonRes))
                 })
             .catch(err => dispatch(accountFail(err)))
