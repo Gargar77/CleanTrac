@@ -10,14 +10,10 @@ import LoadScreen from './components/UI/LoadScreen/LoadScreen';
 
 class App extends Component {
 
-
-  constructor(props) {
-    super(props)
-    this.appRef = React.createRef();
-  }
+  
   componentDidMount() {
     this.props.onTryAutoSignup();
-    this.appRef.current.requestFullscreen()
+    
   }
 
   
@@ -49,7 +45,7 @@ class App extends Component {
     }
 
     return  (
-         <div className="App" ref={this.appRef}>
+         <div className="App">
             {loader}
             {content}
         </div>

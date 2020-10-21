@@ -1,5 +1,5 @@
 .home-container {
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 10% 84% 6%;
