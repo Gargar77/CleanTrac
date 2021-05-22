@@ -14,10 +14,11 @@ Ruby v2.5.3
 Rails v5.2.0
 Database: PostgresQL  v10.14
 
+NOTE: see /Gemfile for a full list of dependencies
 **Frontend**
 create-react-app library ( this creates all the optimal boilerplate and folder structure for an optimal react application)
 
-NOTE: see
+NOTE: see /client/
 
 ### Installing
 
