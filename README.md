@@ -8,6 +8,12 @@ A janitorial management app that helps small to medium sized cleaning companies 
   This Project is structured using Rails as the backend API, and React-redux environment handling the frontend. Users are able to register for an account using their email/ address. This is received, verified, and saved by the backend. Once a user is registered, they are able to login to the account by providing their email and password. Once the backend reveives this request, it will verify if it exists, and if it does, it will send a JWT to the frontend. This token must be used for any consecutive request to the rails server, as this is proof that the current user has an active session. expired JWT tokens must re-login to receive a new token. 
 
 ### Dependencies
+<div style="display:flex">
+  <img src="auth_mobile.png" alt="homepage view" width="20%" height="30%"/>
+  <img src="auth_signup.PNG" alt="homepage view" width="20%" height="30%"/>
+  <img src="home_capture_cleantrac.PNG" alt="homepage view" width="20%" height="30%"/>
+</div>
+
 
 **Backend**
 Ruby v2.5.3
